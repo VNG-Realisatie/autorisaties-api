@@ -58,7 +58,7 @@ COPY ./bin/runtests.sh /runtests.sh
 COPY --from=frontend-build /app/src/ac/static/fonts /app/src/ac/static/fonts
 COPY --from=frontend-build /app/src/ac/static/css /app/src/ac/static/css
 COPY ./src /app/src
-RUN mkdir /app/log && rm /app/src/ac/conf/test.py
+RUN mkdir /app/log
 CMD ["/runtests.sh"]
 
 
