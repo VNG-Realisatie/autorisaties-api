@@ -1,0 +1,16 @@
+pip-tools
+psycopg2
+python-dotenv
+pytz
+raven
+markdown
+uwsgi
+
+Django<2.2
+django-axes
+django-choices
+django-cors-middleware
+django-markup
+
+djangorestframework
+vng-api-common[notifications]

@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: Autorisatiecomponent (AC) API
+  description: 'Een API om een autorisatiecomponent te benaderen.
+
+
+    De `AUTORISATIE` is het kernobject in deze API. Autorisaties worden toegekend
+
+    aan applicaties. Een applicatie is een representatie van een (web) app die
+
+    communiceert met de API van (andere) componenten, zoals het ZRC, DRC, ZTC en
+
+    BRC.
+
+
+    Deze API laat toe om autorisaties van een (taak)applicatie te beheren en uit
+
+    te lezen.
+
+
+    **Autorisatie**
+
+
+    Deze API vereist autorisatie. Je kan de
+
+    [token-tool](https://ref.tst.vng.cloud/tokens/) gebruiken om JWT-tokens te
+
+    genereren.
+
+
+    **Notificaties**
+
+
+    Deze component publiceert notificaties op het kanaal `TODO`.
+
+
+    **Handige links**
+
+
+    * [Aan de slag](https://ref.tst.vng.cloud/ontwikkelaars/)
+
+    * ["Papieren" standaard](https://ref.tst.vng.cloud/standaard/)
+
+    '
+  contact:
+    url: https://github.com/VNG-Realisatie/gemma-zaken
+    email: support@maykinmedia.nl
+  license:
+    name: EUPL 1.2
+    url: https://opensource.org/licenses/EUPL-1.2
+  version: 1.0.0-alpha
+security:
+- JWT-Claims: []
+paths: {}
+servers:
+- url: /
+components:
+  securitySchemes:
+    JWT-Claims:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
