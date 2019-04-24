@@ -13,4 +13,4 @@ django-cors-middleware
 django-markup
 
 djangorestframework
-vng-api-common[notifications]
+vng-api-common[notifications]==0.39.1
