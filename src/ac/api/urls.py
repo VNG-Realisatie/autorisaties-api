@@ -7,7 +7,7 @@ from vng_api_common.schema import SchemaView
 from .viewsets import ApplicatieViewSet
 
 router = routers.DefaultRouter()
-router.register('applicatie', ApplicatieViewSet)
+router.register('applicaties', ApplicatieViewSet)
 
 
 # TODO: the EndpointEnumerator seems to choke on path and re_path
