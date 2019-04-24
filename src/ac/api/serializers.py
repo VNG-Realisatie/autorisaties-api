@@ -1,11 +1,10 @@
 import logging
 
 from django.db import transaction
-from rest_framework import serializers
 from django.utils.translation import ugettext_lazy as _
 
-from vng_api_common.authorizations.models import Autorisatie, Applicatie
-
+from rest_framework import serializers
+from vng_api_common.authorizations.models import Applicatie, Autorisatie
 
 logger = logging.getLogger(__name__)
 
