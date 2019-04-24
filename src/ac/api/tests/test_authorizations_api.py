@@ -1,10 +1,10 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
+from vng_api_common.authorizations.models import Applicatie, Autorisatie
 from vng_api_common.constants import VertrouwelijkheidsAanduiding
 from vng_api_common.tests import (
     JWTScopesMixin, get_operation_url, get_validation_errors
 )
-from vng_api_common.authorizations.models import Applicatie, Autorisatie
 
 from ac.datamodel.tests.factories import ApplicatieFactory, AutorisatieFactory
 

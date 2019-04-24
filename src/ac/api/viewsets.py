@@ -1,11 +1,13 @@
 import logging
 
 from rest_framework import viewsets
+from vng_api_common.authorizations.models import Applicatie
+
+from .filters import ApplicatieFilter
+from .serializers import ApplicatieSerializer
+
 # from vng_api_common.permissions import ActionScopesRequired
 
-from vng_api_common.authorizations.models import Applicatie
-from .serializers import ApplicatieSerializer
-from .filters import ApplicatieFilter
 
 logger = logging.getLogger(__name__)
 

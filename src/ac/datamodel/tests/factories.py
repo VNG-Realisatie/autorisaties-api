@@ -1,5 +1,4 @@
 import factory.fuzzy
-
 from vng_api_common.constants import VertrouwelijkheidsAanduiding
 
 
