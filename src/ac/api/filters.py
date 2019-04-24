@@ -1,3 +1,16 @@
-from vng_api_common.filtersets import FilterSet
+from django_filters.rest_framework import filters
 
-# Define your filtersets here
+from vng_api_common.filtersets import FilterSet
+from vng_api_common.authorizations.models import Applicatie
+
+
+class CharArrayFilter(filters.BaseInFilter, filters.CharFilter):
+    pass
+
+
+class ApplicatieFilter(FilterSet):
+    client_ids = CharArrayFilter(field_name='client_ids', lookup_expr='contains')
+
+    class Meta:
+        model = Applicatie
+        fields = ('client_ids', )
