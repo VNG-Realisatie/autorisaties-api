@@ -52,7 +52,7 @@ info:
 security:
 - JWT-Claims: []
 paths:
-  /applicatie:
+  /applicaties:
     get:
       operationId: applicatie_list
       description: ''
@@ -209,7 +209,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Fout'
       tags:
-      - applicatie
+      - applicaties
     post:
       operationId: applicatie_create
       description: ''
@@ -340,11 +340,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Fout'
       tags:
-      - applicatie
+      - applicaties
       requestBody:
         $ref: '#/components/requestBodies/Applicatie'
     parameters: []
-  /applicatie/{uuid}:
+  /applicaties/{uuid}:
     get:
       operationId: applicatie_read
       description: ''
@@ -470,7 +470,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Fout'
       tags:
-      - applicatie
+      - applicaties
     put:
       operationId: applicatie_update
       description: ''
@@ -608,7 +608,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Fout'
       tags:
-      - applicatie
+      - applicaties
       requestBody:
         $ref: '#/components/requestBodies/Applicatie'
     patch:
@@ -748,7 +748,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Fout'
       tags:
-      - applicatie
+      - applicaties
       requestBody:
         $ref: '#/components/requestBodies/Applicatie'
     delete:
@@ -872,7 +872,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Fout'
       tags:
-      - applicatie
+      - applicaties
     parameters:
     - name: uuid
       in: path
