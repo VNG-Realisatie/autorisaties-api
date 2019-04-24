@@ -12,7 +12,7 @@ class ApplicatieFactory(factory.django.DjangoModelFactory):
 
 class AutorisatieFactory(factory.django.DjangoModelFactory):
     applicatie = factory.SubFactory(ApplicatieFactory)
-    component = factory.Faker('word')
+    component = factory.fuzzy.FuzzyChoices(['ZRC', 'DRC', 'BRC'])
     zaaktype = factory.Faker('url')
     scopes = factory.List(factory.Faker('word') for i in range(3))
     max_vertrouwelijkheidaanduiding = factory.fuzzy.FuzzyChoice(choices=VertrouwelijkheidsAanduiding.values)
