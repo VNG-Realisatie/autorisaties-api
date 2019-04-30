@@ -5,8 +5,8 @@ from django.test import override_settings
 from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.test import APITestCase
-from vng_api_common.tests import JWTScopesMixin, get_operation_url
 from vng_api_common.constants import VertrouwelijkheidsAanduiding
+from vng_api_common.tests import JWTScopesMixin, get_operation_url
 
 from ac.datamodel.tests.factories import AutorisatieFactory
 
