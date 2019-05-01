@@ -6,7 +6,7 @@ from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.test import APITestCase
 from vng_api_common.constants import VertrouwelijkheidsAanduiding
-from vng_api_common.tests import JWTScopesMixin, get_operation_url
+from vng_api_common.tests import JWTAuthMixin, get_operation_url
 
 from ac.datamodel.tests.factories import AutorisatieFactory
 
@@ -16,9 +16,8 @@ from ac.datamodel.tests.factories import AutorisatieFactory
     LINK_FETCHER='vng_api_common.mocks.link_fetcher_200',
     NOTIFICATIONS_DISABLED=False
 )
-class SendNotifTestCase(JWTScopesMixin, APITestCase):
-    # TODO add scopes to AC
-    scopes = []
+class SendNotifTestCase(JWTAuthMixin, APITestCase):
+    scopes = ['autorisaties.scopes.bijwerken']
 
     @patch('zds_client.Client.from_url')
     def test_send_notif_create_application(self, mock_client):

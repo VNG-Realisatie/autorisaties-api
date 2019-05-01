@@ -3,13 +3,14 @@ from rest_framework.test import APITestCase
 from vng_api_common.authorizations.models import Applicatie, Autorisatie
 from vng_api_common.constants import VertrouwelijkheidsAanduiding
 from vng_api_common.tests import (
-    JWTScopesMixin, get_operation_url, get_validation_errors
+    JWTAuthMixin, get_operation_url, get_validation_errors
 )
 
-from ac.datamodel.tests.factories import ApplicatieFactory, AutorisatieFactory
+from ac.datamodel.tests.factories import AutorisatieFactory
 
 
-class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
+class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
+    scopes = ['autorisaties.scopes.bijwerken']
 
     def test_create_application_with_all_permissions(self):
         """
@@ -30,7 +31,7 @@ class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        applicatie = Applicatie.objects.get()
+        applicatie = Applicatie.objects.get(client_ids=['id1', 'id2'])
 
         self.assertEqual(applicatie.client_ids, ['id1', 'id2'])
         self.assertEqual(applicatie.label, 'Melding Openbare Ruimte consumer')
@@ -73,8 +74,8 @@ class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        applicatie = Applicatie.objects.get()
-        autorisaties = Autorisatie.objects.order_by('zaaktype').all()
+        applicatie = Applicatie.objects.get(client_ids=['id1', 'id2'])
+        autorisaties = Autorisatie.objects.filter(applicatie=applicatie).order_by('zaaktype').all()
 
         self.assertEqual(applicatie.client_ids, ['id1', 'id2'])
         self.assertEqual(applicatie.label, 'Melding Openbare Ruimte consumer')
@@ -172,10 +173,13 @@ class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
         self.assertEqual(error['code'], 'missing-authorizations')
 
 
-class ReadAuthorizationsTests(JWTScopesMixin, APITestCase):
+class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
+    scopes = ['autorisaties.scopes.lezen']
 
     @classmethod
     def setUpTestData(cls):
+        super().setUpTestData()
+
         AutorisatieFactory.create(
             applicatie__client_ids=['id1', 'id2'],
             zaaktype='https://example.com',
@@ -200,10 +204,13 @@ class ReadAuthorizationsTests(JWTScopesMixin, APITestCase):
         self.assertEqual(response.data['count'], 0)
 
 
-class UpdateAuthorizationsTests(JWTScopesMixin, APITestCase):
+class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
+    scopes = ['autorisaties.scopes.bijwerken']
 
     @classmethod
     def setUpTestData(cls):
+        super().setUpTestData()
+
         autorisatie = AutorisatieFactory.create(
             applicatie__client_ids=['id1', 'id2'],
             zaaktype='https://example.com',
@@ -217,7 +224,7 @@ class UpdateAuthorizationsTests(JWTScopesMixin, APITestCase):
 
         response = self.client.patch(url, {'client_ids': ['id1']})
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
 
         self.applicatie.refresh_from_db()
         self.assertEqual(self.applicatie.client_ids, ['id1'])
