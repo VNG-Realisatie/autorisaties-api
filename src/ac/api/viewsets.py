@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from vng_api_common.authorizations.models import Applicatie
 from vng_api_common.authorizations.serializers import ApplicatieSerializer
 from vng_api_common.notifications.viewsets import NotificationViewSetMixin
-from vng_api_common.permissions import AuthScopesRequired, ActionScopesRequired
+from vng_api_common.permissions import AuthScopesRequired
 
 from .filters import ApplicatieFilter
 from .kanalen import KANAAL_AUTORISATIES

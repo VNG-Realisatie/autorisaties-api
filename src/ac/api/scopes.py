@@ -7,7 +7,6 @@ https://wiki.exxellence.nl/display/KPORT/2.+Zaaktype+autorisaties
 
 from vng_api_common.scopes import Scope
 
-
 SCOPE_AUTORISATIES_LEZEN = Scope(
     'autorisaties.scopes.lezen',
     description="""
