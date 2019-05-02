@@ -11,9 +11,9 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_1.0/doc/o
 | Attribuut | Omschrijving | Type | Verplicht | CRUD* |
 | --- | --- | --- | --- | --- |
 | component | Name of the component to authorize | string | ja | C​R​U​D |
-| zaaktype | Url of the zaaktype that is allowed | string | ja | C​R​U​D |
 | scopes | Comma-separated list of identifiers used for authentication | array | ja | C​R​U​D |
-| maxVertrouwelijkheidaanduiding | Maximum level of confidentiality that is allowed | string | ja | C​R​U​D |
+| zaaktype | Url of the zaaktype that is allowed | string | nee | C​R​U​D |
+| maxVertrouwelijkheidaanduiding | Maximum level of confidentiality that is allowed | string | nee | C​R​U​D |
 
 ## Applicatie
 

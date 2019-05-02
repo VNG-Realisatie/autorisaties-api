@@ -72,7 +72,7 @@ unidecode==1.0.23
 uritemplate==3.0.0
 urllib3==1.24.1
 uwsgi==2.0.18
-vng-api-common[notifications]==0.39.1
+vng-api-common[notifications]==0.42.0
 waitress==1.2.1
 webob==1.8.5
 webtest==2.0.33

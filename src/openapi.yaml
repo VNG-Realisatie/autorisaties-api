@@ -900,9 +900,7 @@ components:
     Autorisatie:
       required:
       - component
-      - zaaktype
       - scopes
-      - maxVertrouwelijkheidaanduiding
       type: object
       properties:
         component:
@@ -910,13 +908,6 @@ components:
           description: Name of the component to authorize
           type: string
           maxLength: 50
-          minLength: 1
-        zaaktype:
-          title: Zaaktype
-          description: Url of the zaaktype that is allowed
-          type: string
-          format: uri
-          maxLength: 1000
           minLength: 1
         scopes:
           description: Comma-separated list of identifiers used for authentication
@@ -926,6 +917,12 @@ components:
             type: string
             maxLength: 100
             minLength: 1
+        zaaktype:
+          title: Zaaktype
+          description: Url of the zaaktype that is allowed
+          type: string
+          format: uri
+          maxLength: 1000
         maxVertrouwelijkheidaanduiding:
           title: Max vertrouwelijkheidaanduiding
           description: Maximum level of confidentiality that is allowed

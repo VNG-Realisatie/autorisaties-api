@@ -1052,9 +1052,7 @@
         "Autorisatie": {
             "required": [
                 "component",
-                "zaaktype",
-                "scopes",
-                "maxVertrouwelijkheidaanduiding"
+                "scopes"
             ],
             "type": "object",
             "properties": {
@@ -1063,14 +1061,6 @@
                     "description": "Name of the component to authorize",
                     "type": "string",
                     "maxLength": 50,
-                    "minLength": 1
-                },
-                "zaaktype": {
-                    "title": "Zaaktype",
-                    "description": "Url of the zaaktype that is allowed",
-                    "type": "string",
-                    "format": "uri",
-                    "maxLength": 1000,
                     "minLength": 1
                 },
                 "scopes": {
@@ -1082,6 +1072,13 @@
                         "maxLength": 100,
                         "minLength": 1
                     }
+                },
+                "zaaktype": {
+                    "title": "Zaaktype",
+                    "description": "Url of the zaaktype that is allowed",
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 1000
                 },
                 "maxVertrouwelijkheidaanduiding": {
                     "title": "Max vertrouwelijkheidaanduiding",

@@ -3,13 +3,14 @@ from rest_framework.test import APITestCase
 from vng_api_common.authorizations.models import Applicatie, Autorisatie
 from vng_api_common.constants import VertrouwelijkheidsAanduiding
 from vng_api_common.tests import (
-    JWTScopesMixin, get_operation_url, get_validation_errors
+    JWTAuthMixin, get_operation_url, get_validation_errors
 )
 
-from ac.datamodel.tests.factories import ApplicatieFactory, AutorisatieFactory
+from ac.datamodel.tests.factories import AutorisatieFactory
 
 
-class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
+class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
+    scopes = ['autorisaties.scopes.bijwerken']
 
     def test_create_application_with_all_permissions(self):
         """
@@ -30,7 +31,7 @@ class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        applicatie = Applicatie.objects.get()
+        applicatie = Applicatie.objects.get(client_ids=['id1', 'id2'])
 
         self.assertEqual(applicatie.client_ids, ['id1', 'id2'])
         self.assertEqual(applicatie.label, 'Melding Openbare Ruimte consumer')
@@ -73,8 +74,8 @@ class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        applicatie = Applicatie.objects.get()
-        autorisaties = Autorisatie.objects.order_by('zaaktype').all()
+        applicatie = Applicatie.objects.get(client_ids=['id1', 'id2'])
+        autorisaties = Autorisatie.objects.filter(applicatie=applicatie).order_by('zaaktype').all()
 
         self.assertEqual(applicatie.client_ids, ['id1', 'id2'])
         self.assertEqual(applicatie.label, 'Melding Openbare Ruimte consumer')
@@ -171,11 +172,63 @@ class SetAuthorizationsTests(JWTScopesMixin, APITestCase):
         error = get_validation_errors(response, 'nonFieldErrors')
         self.assertEqual(error['code'], 'missing-authorizations')
 
+    def test_create_application_with_null_autorisaties(self):
+        """
+        Test request with autorisaties = null
+        """
+        url = get_operation_url('applicatie_create')
 
-class ReadAuthorizationsTests(JWTScopesMixin, APITestCase):
+        data = {
+            'client_ids': ['id1', 'id2'],
+            'label': 'Melding Openbare Ruimte consumer',
+            'heeftAlleAutorisaties': True,
+            'autorisaties': None
+
+        }
+
+        response = self.client.post(url, data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
+
+        error = get_validation_errors(response, 'autorisaties')
+        self.assertEqual(error['code'], 'null')
+
+    def test_create_application_with_null_heeft_alle_autorisaties(self):
+        """
+        Test request with heeftAlleAutorisaties = null
+        """
+        url = get_operation_url('applicatie_create')
+
+        data = {
+            'client_ids': ['id1', 'id2'],
+            'label': 'Melding Openbare Ruimte consumer',
+            'heeftAlleAutorisaties': None,
+            'autorisaties': [{
+                'component': 'ZRC',
+                'scopes': [
+                    'zds.scopes.zaken.lezen',
+                    'zds.scopes.zaken.aanmaken',
+                ],
+                'zaaktype': 'https://ref.tst.vng.cloud/zrc/api/v1/catalogus/1/zaaktypen/1',
+                'maxVertrouwelijkheidaanduiding': VertrouwelijkheidsAanduiding.beperkt_openbaar,
+            }],
+
+        }
+
+        response = self.client.post(url, data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
+        error = get_validation_errors(response, 'heeftAlleAutorisaties')
+        self.assertEqual(error['code'], 'null')
+
+
+class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
+    scopes = ['autorisaties.scopes.lezen']
 
     @classmethod
     def setUpTestData(cls):
+        super().setUpTestData()
+
         AutorisatieFactory.create(
             applicatie__client_ids=['id1', 'id2'],
             zaaktype='https://example.com',
@@ -200,10 +253,13 @@ class ReadAuthorizationsTests(JWTScopesMixin, APITestCase):
         self.assertEqual(response.data['count'], 0)
 
 
-class UpdateAuthorizationsTests(JWTScopesMixin, APITestCase):
+class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
+    scopes = ['autorisaties.scopes.bijwerken']
 
     @classmethod
     def setUpTestData(cls):
+        super().setUpTestData()
+
         autorisatie = AutorisatieFactory.create(
             applicatie__client_ids=['id1', 'id2'],
             zaaktype='https://example.com',
@@ -217,7 +273,7 @@ class UpdateAuthorizationsTests(JWTScopesMixin, APITestCase):
 
         response = self.client.patch(url, {'client_ids': ['id1']})
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
 
         self.applicatie.refresh_from_db()
         self.assertEqual(self.applicatie.client_ids, ['id1'])

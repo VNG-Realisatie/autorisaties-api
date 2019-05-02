@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'django_markup',
+    'solo',
 
     # Project applications.
     'ac.accounts',
@@ -340,3 +341,6 @@ if SENTRY_DSN:
             'dsn': RAVEN_CONFIG['dsn']
         },
     })
+IS_HTTPS = os.getenv('IS_HTTPS', '1').lower() in ['true', '1', 'yes']
+
+NOTIFICATIONS_KANAAL = 'autorisaties'
