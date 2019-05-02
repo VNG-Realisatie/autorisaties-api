@@ -172,6 +172,55 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
         error = get_validation_errors(response, 'nonFieldErrors')
         self.assertEqual(error['code'], 'missing-authorizations')
 
+    def test_create_application_with_null_autorisaties(self):
+        """
+        Test request with autorisaties = null
+        """
+        url = get_operation_url('applicatie_create')
+
+        data = {
+            'client_ids': ['id1', 'id2'],
+            'label': 'Melding Openbare Ruimte consumer',
+            'heeftAlleAutorisaties': True,
+            'autorisaties': None
+
+        }
+
+        response = self.client.post(url, data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
+
+        error = get_validation_errors(response, 'autorisaties')
+        self.assertEqual(error['code'], 'null')
+
+    def test_create_application_with_null_heeft_alle_autorisaties(self):
+        """
+        Test request with heeftAlleAutorisaties = null
+        """
+        url = get_operation_url('applicatie_create')
+
+        data = {
+            'client_ids': ['id1', 'id2'],
+            'label': 'Melding Openbare Ruimte consumer',
+            'heeftAlleAutorisaties': None,
+            'autorisaties': [{
+                'component': 'ZRC',
+                'scopes': [
+                    'zds.scopes.zaken.lezen',
+                    'zds.scopes.zaken.aanmaken',
+                ],
+                'zaaktype': 'https://ref.tst.vng.cloud/zrc/api/v1/catalogus/1/zaaktypen/1',
+                'maxVertrouwelijkheidaanduiding': VertrouwelijkheidsAanduiding.beperkt_openbaar,
+            }],
+
+        }
+
+        response = self.client.post(url, data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
+        error = get_validation_errors(response, 'heeftAlleAutorisaties')
+        self.assertEqual(error['code'], 'null')
+
 
 class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
     scopes = ['autorisaties.scopes.lezen']
