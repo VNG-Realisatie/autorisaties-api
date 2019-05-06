@@ -1100,13 +1100,25 @@
             "properties": {
                 "component": {
                     "title": "Component",
-                    "description": "Name of the component to authorize",
+                    "description": "Component waarop autorisatie van toepassing is.\n\nDe mapping van waarden naar weergave is als volgt:\n\n* `AC` - Autorisatiecomponent\n* `NRC` - Notificatierouteringcomponent\n* `ZRC` - Zaakregistratiecomponent\n* `ZTC` - Zaaktypecatalogus\n* `DRC` - Documentregistratiecomponent\n* `BRC` - Besluitregistratiecomponent",
                     "type": "string",
-                    "maxLength": 50,
+                    "enum": [
+                        "AC",
+                        "NRC",
+                        "ZRC",
+                        "ZTC",
+                        "DRC",
+                        "BRC"
+                    ]
+                },
+                "componentWeergave": {
+                    "title": "Component weergave",
+                    "type": "string",
+                    "readOnly": true,
                     "minLength": 1
                 },
                 "scopes": {
-                    "description": "Comma-separated list of identifiers used for authentication",
+                    "description": "Komma-gescheiden lijst van scope labels.",
                     "type": "array",
                     "items": {
                         "title": "Scopes",
@@ -1117,14 +1129,14 @@
                 },
                 "zaaktype": {
                     "title": "Zaaktype",
-                    "description": "Url of the zaaktype that is allowed",
+                    "description": "URL naar het zaaktype waarop de autorisatie van toepassing is.",
                     "type": "string",
                     "format": "uri",
                     "maxLength": 1000
                 },
                 "maxVertrouwelijkheidaanduiding": {
                     "title": "Max vertrouwelijkheidaanduiding",
-                    "description": "Maximum level of confidentiality that is allowed",
+                    "description": "Maximaal toegelaten vertrouwelijkheidaanduiding (inclusief).",
                     "type": "string",
                     "enum": [
                         "openbaar",
@@ -1153,7 +1165,7 @@
                     "readOnly": true
                 },
                 "clientIds": {
-                    "description": "Comma-separated list of identifiers used for authentication",
+                    "description": "Komma-gescheiden lijst van consumer identifiers (hun client_id).",
                     "type": "array",
                     "items": {
                         "title": "Client ids",
@@ -1164,14 +1176,14 @@
                 },
                 "label": {
                     "title": "Label",
-                    "description": "A human readable representation of the application",
+                    "description": "Een leesbare representatie van de applicatie, voor eindgebruikers.",
                     "type": "string",
                     "maxLength": 100,
                     "minLength": 1
                 },
                 "heeftAlleAutorisaties": {
                     "title": "Heeft alle autorisaties",
-                    "description": "Globally allows everything",
+                    "description": "Indien alle autorisaties gegeven zijn, dan hoeven deze niet individueel opgegeven te worden. Gebruik dit alleen als je de consumer helemaal vertrouwt.",
                     "type": "boolean"
                 },
                 "autorisaties": {

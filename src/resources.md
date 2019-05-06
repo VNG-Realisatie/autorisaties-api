@@ -10,10 +10,20 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_1.0/doc/o
 
 | Attribuut | Omschrijving | Type | Verplicht | CRUD* |
 | --- | --- | --- | --- | --- |
-| component | Name of the component to authorize | string | ja | C​R​U​D |
-| scopes | Comma-separated list of identifiers used for authentication | array | ja | C​R​U​D |
-| zaaktype | Url of the zaaktype that is allowed | string | nee | C​R​U​D |
-| maxVertrouwelijkheidaanduiding | Maximum level of confidentiality that is allowed | string | nee | C​R​U​D |
+| component | Component waarop autorisatie van toepassing is.
+
+De mapping van waarden naar weergave is als volgt:
+
+* `AC` - Autorisatiecomponent
+* `NRC` - Notificatierouteringcomponent
+* `ZRC` - Zaakregistratiecomponent
+* `ZTC` - Zaaktypecatalogus
+* `DRC` - Documentregistratiecomponent
+* `BRC` - Besluitregistratiecomponent | string | ja | C​R​U​D |
+| componentWeergave |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
+| scopes | Komma-gescheiden lijst van scope labels. | array | ja | C​R​U​D |
+| zaaktype | URL naar het zaaktype waarop de autorisatie van toepassing is. | string | nee | C​R​U​D |
+| maxVertrouwelijkheidaanduiding | Maximaal toegelaten vertrouwelijkheidaanduiding (inclusief). | string | nee | C​R​U​D |
 
 ## Applicatie
 
@@ -22,9 +32,9 @@ Objecttype op [GEMMA Online](https://www.gemmaonline.nl/index.php/Rgbz_1.0/doc/o
 | Attribuut | Omschrijving | Type | Verplicht | CRUD* |
 | --- | --- | --- | --- | --- |
 | url |  | string | nee | ~~C~~​R​~~U~~​~~D~~ |
-| clientIds | Comma-separated list of identifiers used for authentication | array | ja | C​R​U​D |
-| label | A human readable representation of the application | string | ja | C​R​U​D |
-| heeftAlleAutorisaties | Globally allows everything | boolean | nee | C​R​U​D |
+| clientIds | Komma-gescheiden lijst van consumer identifiers (hun client_id). | array | ja | C​R​U​D |
+| label | Een leesbare representatie van de applicatie, voor eindgebruikers. | string | ja | C​R​U​D |
+| heeftAlleAutorisaties | Indien alle autorisaties gegeven zijn, dan hoeven deze niet individueel opgegeven te worden. Gebruik dit alleen als je de consumer helemaal vertrouwt. | boolean | nee | C​R​U​D |
 | autorisaties |  | array | nee | C​R​U​D |
 
 
