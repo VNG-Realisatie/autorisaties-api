@@ -13,9 +13,7 @@ from .scopes import SCOPE_AUTORISATIES_BIJWERKEN, SCOPE_AUTORISATIES_LEZEN
 logger = logging.getLogger(__name__)
 
 
-class ApplicatieViewSet(NotificationViewSetMixin,
-                        viewsets.ModelViewSet):
-
+class ApplicatieViewSet(NotificationViewSetMixin, viewsets.ModelViewSet):
     queryset = Applicatie.objects.prefetch_related('autorisaties').order_by('-pk')
     serializer_class = ApplicatieSerializer
     filterset_class = ApplicatieFilter

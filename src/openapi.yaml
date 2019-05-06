@@ -210,6 +210,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - applicaties
+      security:
+      - JWT-Claims:
+        - autorisaties.lezen
     post:
       operationId: applicatie_create
       description: ''
@@ -341,6 +344,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - applicaties
+      security:
+      - JWT-Claims:
+        - autorisaties.bijwerken
       requestBody:
         $ref: '#/components/requestBodies/Applicatie'
     parameters: []
@@ -471,6 +477,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - applicaties
+      security:
+      - JWT-Claims:
+        - autorisaties.lezen
     put:
       operationId: applicatie_update
       description: ''
@@ -609,6 +618,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - applicaties
+      security:
+      - JWT-Claims:
+        - autorisaties.bijwerken
       requestBody:
         $ref: '#/components/requestBodies/Applicatie'
     patch:
@@ -749,6 +761,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - applicaties
+      security:
+      - JWT-Claims:
+        - autorisaties.bijwerken
       requestBody:
         $ref: '#/components/requestBodies/Applicatie'
     delete:
@@ -873,6 +888,9 @@ paths:
                 $ref: '#/components/schemas/Fout'
       tags:
       - applicaties
+      security:
+      - JWT-Claims:
+        - autorisaties.bijwerken
     parameters:
     - name: uuid
       in: path
@@ -893,9 +911,9 @@ components:
       required: true
   securitySchemes:
     JWT-Claims:
-      bearerFormat: JWT
-      scheme: bearer
       type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     Autorisatie:
       required:

@@ -22,9 +22,9 @@
     ],
     "securityDefinitions": {
         "JWT-Claims": {
-            "bearerFormat": "JWT",
+            "type": "http",
             "scheme": "bearer",
-            "type": "http"
+            "bearerFormat": "JWT"
         }
     },
     "security": [
@@ -222,6 +222,13 @@
                 },
                 "tags": [
                     "applicaties"
+                ],
+                "security": [
+                    {
+                        "JWT-Claims": [
+                            "autorisaties.lezen"
+                        ]
+                    }
                 ]
             },
             "post": {
@@ -388,6 +395,13 @@
                 },
                 "tags": [
                     "applicaties"
+                ],
+                "security": [
+                    {
+                        "JWT-Claims": [
+                            "autorisaties.bijwerken"
+                        ]
+                    }
                 ]
             },
             "parameters": []
@@ -541,6 +555,13 @@
                 },
                 "tags": [
                     "applicaties"
+                ],
+                "security": [
+                    {
+                        "JWT-Claims": [
+                            "autorisaties.lezen"
+                        ]
+                    }
                 ]
             },
             "put": {
@@ -714,6 +735,13 @@
                 },
                 "tags": [
                     "applicaties"
+                ],
+                "security": [
+                    {
+                        "JWT-Claims": [
+                            "autorisaties.bijwerken"
+                        ]
+                    }
                 ]
             },
             "patch": {
@@ -887,6 +915,13 @@
                 },
                 "tags": [
                     "applicaties"
+                ],
+                "security": [
+                    {
+                        "JWT-Claims": [
+                            "autorisaties.bijwerken"
+                        ]
+                    }
                 ]
             },
             "delete": {
@@ -1034,6 +1069,13 @@
                 },
                 "tags": [
                     "applicaties"
+                ],
+                "security": [
+                    {
+                        "JWT-Claims": [
+                            "autorisaties.bijwerken"
+                        ]
+                    }
                 ]
             },
             "parameters": [
