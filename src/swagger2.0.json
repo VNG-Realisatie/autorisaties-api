@@ -36,7 +36,8 @@
         "/applicaties": {
             "get": {
                 "operationId": "applicatie_list",
-                "description": "",
+                "summary": "Geef een collectie van applicaties, met ingesloten autorisaties.",
+                "description": "De autorisaties zijn gedefinieerd op een specifieke component, bijvoorbeeld\nhet ZRC, en geven aan welke scopes van toepassing zijn voor dit component.\nDe waarde van de `component` bepaalt ook welke verdere informatie ingesloten\nis, zoals `zaaktype` en `maxVertrouwelijkheidaanduiding` voor het ZRC.\n\nIn dit voorbeeld gelden er dus zaaktype-specifieke scopes en mogen zaken\nvan het betreffende zaaktype met een striktere vertrouwelijkheidaanduiding\ndan `maxVertrouwelijkheidaanduiding` niet ontsloten worden.\n\nDe collectie kan doorzocht worden met de ``clientIds`` query parameter.",
                 "parameters": [
                     {
                         "name": "clientIds",
@@ -233,7 +234,8 @@
             },
             "post": {
                 "operationId": "applicatie_create",
-                "description": "",
+                "summary": "Registreer een applicatie met een bepaalde set van autorisaties.",
+                "description": "Indien `heeftAlleAutorisaties` gezet is, dan moet je\n`autorisaties` leeg (of weg) laten.\n\nIndien je `autorisaties` meegeeft, dan moet `heeftAlleAutorisaties` de\nwaarde `false` hebben of weggelaten worden.\n\nNa het aanmaken wordt een notificatie verstuurd.",
                 "parameters": [
                     {
                         "name": "data",
@@ -409,7 +411,8 @@
         "/applicaties/{uuid}": {
             "get": {
                 "operationId": "applicatie_read",
-                "description": "",
+                "summary": "Vraag een applicatie op, met ingesloten autorisaties.",
+                "description": "De autorisaties zijn gedefinieerd op een specifieke component, bijvoorbeeld\nhet ZRC, en geven aan welke scopes van toepassing zijn voor dit component.\nDe waarde van de `component` bepaalt ook welke verdere informatie ingesloten\nis, zoals `zaaktype` en `maxVertrouwelijkheidaanduiding` voor het ZRC.\n\nIn dit voorbeeld gelden er dus zaaktype-specifieke scopes en mogen zaken\nvan het betreffende zaaktype met een striktere vertrouwelijkheidaanduiding\ndan `maxVertrouwelijkheidaanduiding` niet ontsloten worden.",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -566,7 +569,8 @@
             },
             "put": {
                 "operationId": "applicatie_update",
-                "description": "",
+                "summary": "Werk de applicatie bij.",
+                "description": "Indien `heeftAlleAutorisaties` gezet is, dan moet je\n`autorisaties` leeg (of weg) laten.\n\nIndien je `autorisaties` meegeeft, dan moet `heeftAlleAutorisaties` de\nwaarde `false` hebben of weggelaten worden.\n\nNa het bijwerken wordt een notificatie verstuurd.",
                 "parameters": [
                     {
                         "name": "data",
@@ -746,7 +750,8 @@
             },
             "patch": {
                 "operationId": "applicatie_partial_update",
-                "description": "",
+                "summary": "Werk (een deel van) de applicatie bij.",
+                "description": "Indien `autorisaties` meegegeven is, dan worden de bestaande `autorisaties`\nvervangen met de nieuwe set van `autorisaties`.\n\nIndien `heeftAlleAutorisaties` gezet is, dan moet je\n`autorisaties` leeg (of weg) laten.\n\nIndien je `autorisaties` meegeeft, dan moet `heeftAlleAutorisaties` de\nwaarde `false` hebben of weggelaten worden.\n\nNa het bijwerken wordt een notificatie verstuurd.",
                 "parameters": [
                     {
                         "name": "data",
@@ -926,7 +931,8 @@
             },
             "delete": {
                 "operationId": "applicatie_delete",
-                "description": "",
+                "summary": "Verwijder een applicatie met de bijhorende autorisaties.",
+                "description": "Na het verwijderen wordt een notificatie verstuurd.",
                 "parameters": [],
                 "responses": {
                     "204": {

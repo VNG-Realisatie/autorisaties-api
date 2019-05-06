@@ -55,7 +55,25 @@ paths:
   /applicaties:
     get:
       operationId: applicatie_list
-      description: ''
+      summary: Geef een collectie van applicaties, met ingesloten autorisaties.
+      description: 'De autorisaties zijn gedefinieerd op een specifieke component,
+        bijvoorbeeld
+
+        het ZRC, en geven aan welke scopes van toepassing zijn voor dit component.
+
+        De waarde van de `component` bepaalt ook welke verdere informatie ingesloten
+
+        is, zoals `zaaktype` en `maxVertrouwelijkheidaanduiding` voor het ZRC.
+
+
+        In dit voorbeeld gelden er dus zaaktype-specifieke scopes en mogen zaken
+
+        van het betreffende zaaktype met een striktere vertrouwelijkheidaanduiding
+
+        dan `maxVertrouwelijkheidaanduiding` niet ontsloten worden.
+
+
+        De collectie kan doorzocht worden met de ``clientIds`` query parameter.'
       parameters:
       - name: clientIds
         in: query
@@ -215,7 +233,18 @@ paths:
         - autorisaties.lezen
     post:
       operationId: applicatie_create
-      description: ''
+      summary: Registreer een applicatie met een bepaalde set van autorisaties.
+      description: 'Indien `heeftAlleAutorisaties` gezet is, dan moet je
+
+        `autorisaties` leeg (of weg) laten.
+
+
+        Indien je `autorisaties` meegeeft, dan moet `heeftAlleAutorisaties` de
+
+        waarde `false` hebben of weggelaten worden.
+
+
+        Na het aanmaken wordt een notificatie verstuurd.'
       responses:
         '201':
           description: ''
@@ -353,7 +382,22 @@ paths:
   /applicaties/{uuid}:
     get:
       operationId: applicatie_read
-      description: ''
+      summary: Vraag een applicatie op, met ingesloten autorisaties.
+      description: 'De autorisaties zijn gedefinieerd op een specifieke component,
+        bijvoorbeeld
+
+        het ZRC, en geven aan welke scopes van toepassing zijn voor dit component.
+
+        De waarde van de `component` bepaalt ook welke verdere informatie ingesloten
+
+        is, zoals `zaaktype` en `maxVertrouwelijkheidaanduiding` voor het ZRC.
+
+
+        In dit voorbeeld gelden er dus zaaktype-specifieke scopes en mogen zaken
+
+        van het betreffende zaaktype met een striktere vertrouwelijkheidaanduiding
+
+        dan `maxVertrouwelijkheidaanduiding` niet ontsloten worden.'
       responses:
         '200':
           description: ''
@@ -482,7 +526,18 @@ paths:
         - autorisaties.lezen
     put:
       operationId: applicatie_update
-      description: ''
+      summary: Werk de applicatie bij.
+      description: 'Indien `heeftAlleAutorisaties` gezet is, dan moet je
+
+        `autorisaties` leeg (of weg) laten.
+
+
+        Indien je `autorisaties` meegeeft, dan moet `heeftAlleAutorisaties` de
+
+        waarde `false` hebben of weggelaten worden.
+
+
+        Na het bijwerken wordt een notificatie verstuurd.'
       responses:
         '200':
           description: ''
@@ -625,7 +680,23 @@ paths:
         $ref: '#/components/requestBodies/Applicatie'
     patch:
       operationId: applicatie_partial_update
-      description: ''
+      summary: Werk (een deel van) de applicatie bij.
+      description: 'Indien `autorisaties` meegegeven is, dan worden de bestaande `autorisaties`
+
+        vervangen met de nieuwe set van `autorisaties`.
+
+
+        Indien `heeftAlleAutorisaties` gezet is, dan moet je
+
+        `autorisaties` leeg (of weg) laten.
+
+
+        Indien je `autorisaties` meegeeft, dan moet `heeftAlleAutorisaties` de
+
+        waarde `false` hebben of weggelaten worden.
+
+
+        Na het bijwerken wordt een notificatie verstuurd.'
       responses:
         '200':
           description: ''
@@ -768,7 +839,8 @@ paths:
         $ref: '#/components/requestBodies/Applicatie'
     delete:
       operationId: applicatie_delete
-      description: ''
+      summary: Verwijder een applicatie met de bijhorende autorisaties.
+      description: Na het verwijderen wordt een notificatie verstuurd.
       responses:
         '204':
           description: ''
