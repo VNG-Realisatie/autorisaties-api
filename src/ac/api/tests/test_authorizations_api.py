@@ -6,11 +6,14 @@ from vng_api_common.tests import (
     JWTAuthMixin, get_operation_url, get_validation_errors
 )
 
+from ac.api.scopes import (
+    SCOPE_AUTORISATIES_BIJWERKEN, SCOPE_AUTORISATIES_LEZEN
+)
 from ac.datamodel.tests.factories import AutorisatieFactory
 
 
 class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
-    scopes = ['autorisaties.scopes.bijwerken']
+    scopes = [str(SCOPE_AUTORISATIES_BIJWERKEN)]
 
     def test_create_application_with_all_permissions(self):
         """
@@ -223,7 +226,7 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
 
 
 class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
-    scopes = ['autorisaties.scopes.lezen']
+    scopes = [str(SCOPE_AUTORISATIES_LEZEN)]
 
     @classmethod
     def setUpTestData(cls):
@@ -254,7 +257,7 @@ class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
 
 
 class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
-    scopes = ['autorisaties.scopes.bijwerken']
+    scopes = [str(SCOPE_AUTORISATIES_BIJWERKEN)]
 
     @classmethod
     def setUpTestData(cls):

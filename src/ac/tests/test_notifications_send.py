@@ -8,6 +8,7 @@ from rest_framework.test import APITestCase
 from vng_api_common.constants import VertrouwelijkheidsAanduiding
 from vng_api_common.tests import JWTAuthMixin, get_operation_url
 
+from ac.api.scopes import SCOPE_AUTORISATIES_BIJWERKEN
 from ac.datamodel.tests.factories import AutorisatieFactory
 
 
@@ -17,7 +18,7 @@ from ac.datamodel.tests.factories import AutorisatieFactory
     NOTIFICATIONS_DISABLED=False
 )
 class SendNotifTestCase(JWTAuthMixin, APITestCase):
-    scopes = ['autorisaties.scopes.bijwerken']
+    scopes = [str(SCOPE_AUTORISATIES_BIJWERKEN)]
 
     @patch('zds_client.Client.from_url')
     def test_send_notif_create_application(self, mock_client):
