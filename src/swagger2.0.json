@@ -1097,7 +1097,7 @@
         }
     },
     "definitions": {
-        "Autorisatie": {
+        "AutorisatieBase": {
             "required": [
                 "component",
                 "scopes"
@@ -1132,7 +1132,13 @@
                         "maxLength": 100,
                         "minLength": 1
                     }
-                },
+                }
+            },
+            "discriminator": "component"
+        },
+        "ZRCAutorisatie": {
+            "type": "object",
+            "properties": {
                 "zaaktype": {
                     "title": "Zaaktype",
                     "description": "URL naar het zaaktype waarop de autorisatie van toepassing is.",
@@ -1156,6 +1162,78 @@
                     ]
                 }
             }
+        },
+        "ZRC": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/AutorisatieBase"
+                },
+                {
+                    "$ref": "#/definitions/ZRCAutorisatie"
+                }
+            ]
+        },
+        "DRCAutorisatie": {
+            "type": "object",
+            "properties": {
+                "informatieobjecttype": {
+                    "title": "Informatieobjecttype",
+                    "description": "URL naar het informatieobjecttype waarop de autorisatie van toepassing is.",
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 1000
+                },
+                "maxVertrouwelijkheidaanduiding": {
+                    "title": "Max vertrouwelijkheidaanduiding",
+                    "description": "Maximaal toegelaten vertrouwelijkheidaanduiding (inclusief).",
+                    "type": "string",
+                    "enum": [
+                        "openbaar",
+                        "beperkt openbaar",
+                        "intern",
+                        "zaakvertrouwelijk",
+                        "vertrouwelijk",
+                        "confidentieel",
+                        "geheim",
+                        "zeer geheim"
+                    ]
+                }
+            }
+        },
+        "DRC": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/AutorisatieBase"
+                },
+                {
+                    "$ref": "#/definitions/DRCAutorisatie"
+                }
+            ]
+        },
+        "BRCAutorisatie": {
+            "type": "object",
+            "properties": {
+                "besluittype": {
+                    "title": "Besluittype",
+                    "description": "URL naar het besluittype waarop de autorisatie van toepassing is.",
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 1000
+                }
+            }
+        },
+        "BRC": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/AutorisatieBase"
+                },
+                {
+                    "$ref": "#/definitions/BRCAutorisatie"
+                }
+            ]
         },
         "Applicatie": {
             "required": [
@@ -1195,7 +1273,7 @@
                 "autorisaties": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Autorisatie"
+                        "$ref": "#/definitions/AutorisatieBase"
                     }
                 }
             }
