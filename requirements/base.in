@@ -1,3 +1,5 @@
+bleach
+bleach-whitelist
 pip-tools
 psycopg2
 python-dotenv

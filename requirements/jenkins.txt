@@ -6,6 +6,8 @@
 #
 astroid==1.6.5
 beautifulsoup4==4.7.1
+bleach-whitelist==0.0.10
+bleach==3.1.0
 bumpversion==0.5.3
 certifi==2019.3.9
 chardet==3.0.4
@@ -74,6 +76,7 @@ urllib3==1.24.3
 uwsgi==2.0.18
 vng-api-common[notifications]==0.43.0
 waitress==1.2.1
+webencodings==0.5.1
 webob==1.8.5
 webtest==2.0.33
 wrapt==1.11.1

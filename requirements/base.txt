@@ -4,6 +4,8 @@
 #
 #    pip-compile --no-index requirements/base.in
 #
+bleach-whitelist==0.0.10
+bleach==3.1.0
 certifi==2019.3.9         # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
@@ -41,9 +43,10 @@ pyyaml==5.1               # via gemma-zds-client, oyaml, vng-api-common
 raven==6.10.0
 requests==2.21.0          # via coreapi, gemma-zds-client, vng-api-common
 ruamel.yaml==0.15.90      # via drf-yasg
-six==1.12.0               # via django-appconf, django-markup, drf-yasg, isodate, pip-tools
+six==1.12.0               # via bleach, django-appconf, django-markup, drf-yasg, isodate, pip-tools
 unidecode==1.0.23         # via vng-api-common
 uritemplate==3.0.0        # via coreapi, drf-yasg
 urllib3==1.24.3           # via requests
 uwsgi==2.0.18
 vng-api-common[notifications]==0.43.0
+webencodings==0.5.1       # via bleach
