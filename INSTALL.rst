@@ -196,7 +196,7 @@ The easiest way to get the project started is by using `Docker Compose`_.
    system you can run ``docker system prune``.
 
 .. _Docker Compose: https://docs.docker.com/compose/install/
-.. _Github: https://github.com/maykinmedia/ac/
+.. _Github: https://github.com/VNG-Realisatie/gemma-autorisatiecomponent/
 
 
 More Docker
