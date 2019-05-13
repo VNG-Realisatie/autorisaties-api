@@ -983,9 +983,9 @@ components:
       required: true
   securitySchemes:
     JWT-Claims:
-      type: http
-      scheme: bearer
       bearerFormat: JWT
+      scheme: bearer
+      type: http
   schemas:
     AutorisatieBase:
       required:
@@ -1208,7 +1208,7 @@ components:
       - status
       - detail
       - instance
-      - invalid-params
+      - invalidParams
       type: object
       properties:
         type:
@@ -1240,7 +1240,7 @@ components:
             Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.
           type: string
           minLength: 1
-        invalid-params:
+        invalidParams:
           type: array
           items:
             $ref: '#/components/schemas/FieldValidationError'
