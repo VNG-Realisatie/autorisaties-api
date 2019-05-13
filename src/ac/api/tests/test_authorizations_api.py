@@ -1,7 +1,9 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 from vng_api_common.authorizations.models import Applicatie, Autorisatie
-from vng_api_common.constants import VertrouwelijkheidsAanduiding
+from vng_api_common.constants import (
+    ComponentTypes, VertrouwelijkheidsAanduiding
+)
 from vng_api_common.tests import (
     JWTAuthMixin, get_operation_url, get_validation_errors
 )
@@ -54,7 +56,7 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
             'client_ids': ['id1', 'id2'],
             'label': 'Melding Openbare Ruimte consumer',
             'autorisaties': [{
-                'component': 'ZRC',
+                'component': ComponentTypes.zrc,
                 'scopes': [
                     'zds.scopes.zaken.lezen',
                     'zds.scopes.zaken.aanmaken',
@@ -62,7 +64,7 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
                 'zaaktype': 'https://ref.tst.vng.cloud/zrc/api/v1/catalogus/1/zaaktypen/1',
                 'maxVertrouwelijkheidaanduiding': VertrouwelijkheidsAanduiding.beperkt_openbaar,
             }, {
-                'component': 'ZRC',
+                'component': ComponentTypes.zrc,
                 'scopes': [
                     'zds.scopes.zaken.lezen',
                     'zds.scopes.zaken.aanmaken',
@@ -88,7 +90,7 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
         auth1, auth2 = autorisaties
 
         self.assertEqual(auth1.applicatie, applicatie)
-        self.assertEqual(auth1.component, 'ZRC')
+        self.assertEqual(auth1.component, ComponentTypes.zrc)
         self.assertEqual(auth1.zaaktype, 'https://ref.tst.vng.cloud/zrc/api/v1/catalogus/1/zaaktypen/1')
         self.assertEqual(
             auth1.scopes,
@@ -96,7 +98,7 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
         )
         self.assertEqual(auth1.max_vertrouwelijkheidaanduiding, VertrouwelijkheidsAanduiding.beperkt_openbaar)
         self.assertEqual(auth2.applicatie, applicatie)
-        self.assertEqual(auth2.component, 'ZRC')
+        self.assertEqual(auth2.component, ComponentTypes.zrc)
         self.assertEqual(
             auth2.scopes,
             ['zds.scopes.zaken.lezen', 'zds.scopes.zaken.aanmaken', 'zds.scopes.zaken.verwijderen']
@@ -117,7 +119,7 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
             'label': 'Melding Openbare Ruimte consumer',
             'heeftAlleAutorisaties': True,
             'autorisaties': [{
-                'component': 'ZRC',
+                'component': ComponentTypes.zrc,
                 'scopes': [
                     'zds.scopes.zaken.lezen',
                     'zds.scopes.zaken.aanmaken',
@@ -207,7 +209,7 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
             'label': 'Melding Openbare Ruimte consumer',
             'heeftAlleAutorisaties': None,
             'autorisaties': [{
-                'component': 'ZRC',
+                'component': ComponentTypes.zrc,
                 'scopes': [
                     'zds.scopes.zaken.lezen',
                     'zds.scopes.zaken.aanmaken',
@@ -234,8 +236,9 @@ class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
 
         AutorisatieFactory.create(
             applicatie__client_ids=['id1', 'id2'],
-            zaaktype='https://example.com',
+            component=ComponentTypes.zrc,
             scopes=['dummy.scope'],
+            zaaktype='https://example.com',
             max_vertrouwelijkheidaanduiding=VertrouwelijkheidsAanduiding.openbaar,
         )
 
@@ -265,8 +268,9 @@ class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
 
         autorisatie = AutorisatieFactory.create(
             applicatie__client_ids=['id1', 'id2'],
-            zaaktype='https://example.com',
+            component=ComponentTypes.zrc,
             scopes=['dummy.scope'],
+            zaaktype='https://example.com',
             max_vertrouwelijkheidaanduiding=VertrouwelijkheidsAanduiding.openbaar,
         )
         cls.applicatie = autorisatie.applicatie
@@ -285,7 +289,7 @@ class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
         url = get_operation_url('applicatie_partial_update', uuid=self.applicatie.uuid)
         data = {
             'autorisaties': [{
-                'component': 'ZRC',
+                'component': ComponentTypes.zrc,
                 'scopes': [
                     'zds.scopes.zaken.lezen',
                     'zds.scopes.zaken.aanmaken',
@@ -293,7 +297,7 @@ class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
                 'maxVertrouwelijkheidaanduiding': VertrouwelijkheidsAanduiding.beperkt_openbaar,
                 'zaaktype': 'https://ref.tst.vng.cloud/zrc/api/v1/catalogus/1/zaaktypen/1',
             }, {
-                'component': 'ZRC',
+                'component': ComponentTypes.zrc,
                 'scopes': [
                     'zds.scopes.zaken.lezen',
                     'zds.scopes.zaken.aanmaken',
