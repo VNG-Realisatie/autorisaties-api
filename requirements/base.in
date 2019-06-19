@@ -8,7 +8,7 @@ raven
 markdown
 uwsgi
 
-Django<2.2
+Django
 django-axes
 django-choices
 django-cors-middleware
