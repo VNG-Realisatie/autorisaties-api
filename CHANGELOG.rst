@@ -2,6 +2,15 @@
 Wijzigingen
 ===========
 
+0.3.0 (2019-06-19)
+==================
+
+Small feature release without breaking changes
+
+* Bumped dependencies to (latest) security releases
+* Translated API documentation
+* Added fixture loading to container start script
+
 0.2.5 (2019-06-03)
 ==================
 
