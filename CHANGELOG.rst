@@ -2,6 +2,11 @@
 Wijzigingen
 ===========
 
+0.3.1 (2019-07-01)
+==================
+
+Fixed bug in docker start script preventing fixtures from being loaded.
+
 0.3.0 (2019-06-19)
 ==================
 
