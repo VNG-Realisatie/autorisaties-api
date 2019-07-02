@@ -51,7 +51,7 @@ Referenties
      :target: https://requires.io/github/VNG-Realisatie/gemma-autorisatiecomponent/requirements/?branch=master
      :alt: Requirements status
 
-.. _testomgeving: https://ref.tst.vng.cloud/AC/
+.. _testomgeving: https://ref.tst.vng.cloud/ac/
 
 Licentie
 ========
