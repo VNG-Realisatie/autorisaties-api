@@ -6,7 +6,7 @@ from vng_api_common.constants import (
     ComponentTypes, VertrouwelijkheidsAanduiding
 )
 from vng_api_common.tests import (
-    JWTAuthMixin, get_operation_url, get_validation_errors
+    JWTAuthMixin, get_operation_url, get_validation_errors, reverse
 )
 
 from ac.api.scopes import (
@@ -250,6 +250,18 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
         error = get_validation_errors(response, 'clientIds')
         self.assertEqual(error["code"], UniqueClientIDValidator.code)
+
+    def test_fetch_via_client_id(self):
+        """
+        Retrieve THE application object, using a client ID as lookup.
+        """
+        url = get_operation_url('applicatie_find_by_client_id')
+        app = ApplicatieFactory.create(client_ids=['client id'])
+
+        response = self.client.get(url, {'clientId': 'client id'})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["url"], reverse(app))
 
 
 class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
