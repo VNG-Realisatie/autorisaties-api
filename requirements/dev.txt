@@ -31,7 +31,7 @@ django==2.2.3
 djangorestframework-camel-case==1.0.3
 djangorestframework==3.9.4
 drf-nested-routers==0.91
-drf-yasg==1.15.0
+drf-yasg==1.16.0
 factory-boy==2.11.1
 faker==1.0.4              # via factory-boy
 freezegun==0.3.11
@@ -73,7 +73,7 @@ unidecode==1.0.23
 uritemplate==3.0.0
 urllib3==1.24.3
 uwsgi==2.0.18
-vng-api-common==0.57.2
+vng-api-common==0.59.1
 waitress==1.2.1           # via webtest
 webencodings==0.5.1
 webob==1.8.5              # via webtest

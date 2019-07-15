@@ -23,7 +23,7 @@ django==2.2.3
 djangorestframework-camel-case==1.0.3  # via vng-api-common
 djangorestframework==3.9.4
 drf-nested-routers==0.91  # via vng-api-common
-drf-yasg==1.15.0          # via vng-api-common
+drf-yasg==1.16.0          # via vng-api-common
 gemma-zds-client==0.11.0  # via vng-api-common
 idna==2.8                 # via requests
 inflection==0.3.1         # via drf-yasg
@@ -49,5 +49,5 @@ unidecode==1.0.23         # via vng-api-common
 uritemplate==3.0.0        # via coreapi, drf-yasg
 urllib3==1.24.3           # via requests
 uwsgi==2.0.18
-vng-api-common==0.57.2
+vng-api-common==0.59.1
 webencodings==0.5.1       # via bleach
