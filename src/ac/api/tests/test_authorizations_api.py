@@ -251,18 +251,6 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
         error = get_validation_errors(response, 'clientIds')
         self.assertEqual(error["code"], UniqueClientIDValidator.code)
 
-    def test_fetch_via_client_id(self):
-        """
-        Retrieve THE application object, using a client ID as lookup.
-        """
-        url = get_operation_url('applicatie_find_by_client_id')
-        app = ApplicatieFactory.create(client_ids=['client id'])
-
-        response = self.client.get(url, {'clientId': 'client id'})
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["url"], reverse(app))
-
 
 class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
     scopes = [str(SCOPE_AUTORISATIES_LEZEN)]
@@ -294,6 +282,21 @@ class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['count'], 0)
+
+    def test_fetch_via_client_id(self):
+        """
+        Retrieve THE application object, using a client ID as lookup.
+        """
+        url = get_operation_url('applicatie_consumer')
+        app = ApplicatieFactory.create(client_ids=['client id'])
+
+        response = self.client.get(url, {'clientId': 'client id'})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.data["url"],
+            f"http://testserver{reverse(app)}"
+        )
 
 
 class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
