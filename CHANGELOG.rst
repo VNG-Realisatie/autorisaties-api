@@ -2,6 +2,18 @@
 Wijzigingen
 ===========
 
+0.4.0 (2019-07-15)
+==================
+
+Improvements towards release candidate
+
+* Fixed some documentation
+* Bumped to latest Django & vng-api-common releases
+* Set up CI/CD to publish/deploy ``develop`` builds
+* Added migration to new domains
+* Enforced the uniqueness of ``Applicatie.clientIds`` entries
+* Added API endpoint to fetch the application for a given Client ID
+
 0.3.1 (2019-07-01)
 ==================
 
