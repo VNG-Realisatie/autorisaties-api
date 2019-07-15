@@ -2,7 +2,7 @@
 Autorisatiecomponent
 ====================
 
-:Version: 0.3.1
+:Version: 0.4.0
 :Source: https://github.com/VNG-Realisatie/gemma-autorisatiecomponent
 :Keywords: autorisatie, autz, zaakgericht werken, GEMMA
 :PythonVersion: 3.7
