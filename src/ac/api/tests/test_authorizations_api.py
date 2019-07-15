@@ -1,17 +1,18 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 from vng_api_common.authorizations.models import Applicatie, Autorisatie
+from vng_api_common.authorizations.validators import UniqueClientIDValidator
 from vng_api_common.constants import (
     ComponentTypes, VertrouwelijkheidsAanduiding
 )
 from vng_api_common.tests import (
-    JWTAuthMixin, get_operation_url, get_validation_errors
+    JWTAuthMixin, get_operation_url, get_validation_errors, reverse
 )
 
 from ac.api.scopes import (
     SCOPE_AUTORISATIES_BIJWERKEN, SCOPE_AUTORISATIES_LEZEN
 )
-from ac.datamodel.tests.factories import AutorisatieFactory
+from ac.datamodel.tests.factories import ApplicatieFactory, AutorisatieFactory
 
 
 class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
@@ -226,6 +227,30 @@ class SetAuthorizationsTests(JWTAuthMixin, APITestCase):
         error = get_validation_errors(response, 'heeftAlleAutorisaties')
         self.assertEqual(error['code'], 'null')
 
+    def test_create_duplicate_client_id(self):
+        """
+        Assert that a client ID can occur only once.
+
+        A client ID belongs to one application. When trying to create another
+        application with a client ID that already exists, the API should
+        throw a validation error.
+        """
+        url = get_operation_url('applicatie_create')
+        ApplicatieFactory.create(client_ids=['client1', 'client2'])
+        data = {
+            'clientIds': ['client2'],
+            'label': 'Faulty application',
+            'autorisaties': [{
+                'component': ComponentTypes.ac,
+                'scopes': ['autorisaties.lezen'],
+            }],
+        }
+
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, response.data)
+        error = get_validation_errors(response, 'clientIds')
+        self.assertEqual(error["code"], UniqueClientIDValidator.code)
+
 
 class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
     scopes = [str(SCOPE_AUTORISATIES_LEZEN)]
@@ -257,6 +282,21 @@ class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['count'], 0)
+
+    def test_fetch_via_client_id(self):
+        """
+        Retrieve THE application object, using a client ID as lookup.
+        """
+        url = get_operation_url('applicatie_consumer')
+        app = ApplicatieFactory.create(client_ids=['client id'])
+
+        response = self.client.get(url, {'clientId': 'client id'})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(
+            response.data["url"],
+            f"http://testserver{reverse(app)}"
+        )
 
 
 class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
