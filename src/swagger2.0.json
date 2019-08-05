@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "Autorisatiecomponent (AC) API",
-        "description": "Een API om een autorisatiecomponent te benaderen.\n\nDe `AUTORISATIE` is het kernobject in deze API. Autorisaties worden toegekend\naan applicaties. Een applicatie is een representatie van een (web) app die\ncommuniceert met de API van (andere) componenten, zoals het ZRC, DRC, ZTC en\nBRC.\n\nDeze API laat toe om autorisaties van een (taak)applicatie te beheren en uit\nte lezen.\n\n**Autorisatie**\n\nDeze API vereist autorisatie. Je kan de\n[token-tool](https://ref.tst.vng.cloud/tokens/) gebruiken om JWT-tokens te\ngenereren.\n\n**Notificaties**\n\nDeze component publiceert notificaties op het kanaal `TODO`.\n\n**Handige links**\n\n* [Aan de slag](https://ref.tst.vng.cloud/ontwikkelaars/)\n* [\"Papieren\" standaard](https://ref.tst.vng.cloud/standaard/)\n",
+        "description": "Een API om een autorisatiecomponent te benaderen.\n\nDe `AUTORISATIE` is het kernobject in deze API. Autorisaties worden toegekend\naan applicaties. Een applicatie is een representatie van een (web) app die\ncommuniceert met de API van (andere) componenten, zoals het ZRC, DRC, ZTC en\nBRC.\n\nDeze API laat toe om autorisaties van een (taak)applicatie te beheren en uit\nte lezen.\n\n**Autorisatie**\n\nDeze API vereist autorisatie. Je kan de\n[token-tool](https://ref.tst.vng.cloud/tokens/) gebruiken om JWT-tokens te\ngenereren.\n\n### Notificaties\n\nDeze API publiceert notificaties op het kanaal `autorisaties`.\n\n**Main resource**\n\n`applicatie`\n\n\n\n**Kenmerken**\n\n\n\n**Resources en acties**\n- `applicatie`: create, update, destroy\n\n\n**Handige links**\n\n* [Aan de slag](https://ref.tst.vng.cloud/ontwikkelaars/)\n* [\"Papieren\" standaard](https://ref.tst.vng.cloud/standaard/)\n",
         "contact": {
             "url": "https://github.com/VNG-Realisatie/gemma-zaken",
             "email": "support@maykinmedia.nl"
@@ -22,9 +22,9 @@
     ],
     "securityDefinitions": {
         "JWT-Claims": {
-            "type": "http",
+            "bearerFormat": "JWT",
             "scheme": "bearer",
-            "bearerFormat": "JWT"
+            "type": "http"
         }
     },
     "security": [
@@ -469,7 +469,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not_found",
+                        "description": "Not found",
                         "schema": {
                             "$ref": "#/definitions/Fout"
                         },
@@ -630,7 +630,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not_found",
+                        "description": "Not found",
                         "schema": {
                             "$ref": "#/definitions/Fout"
                         },
@@ -811,7 +811,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not_found",
+                        "description": "Not found",
                         "schema": {
                             "$ref": "#/definitions/Fout"
                         },
@@ -992,7 +992,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not_found",
+                        "description": "Not found",
                         "schema": {
                             "$ref": "#/definitions/Fout"
                         },
@@ -1147,7 +1147,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not_found",
+                        "description": "Not found",
                         "schema": {
                             "$ref": "#/definitions/Fout"
                         },
