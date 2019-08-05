@@ -1,6 +1,9 @@
 from django.conf import settings
 
 from drf_yasg import openapi
+from vng_api_common.notifications.utils import notification_documentation
+
+from .kanalen import KANAAL_AUTORISATIES
 
 description = f"""Een API om een autorisatiecomponent te benaderen.
 
@@ -18,9 +21,7 @@ Deze API vereist autorisatie. Je kan de
 [token-tool](https://ref.tst.vng.cloud/tokens/) gebruiken om JWT-tokens te
 genereren.
 
-**Notificaties**
-
-Deze component publiceert notificaties op het kanaal `TODO`.
+{notification_documentation(KANAAL_AUTORISATIES)}
 
 **Handige links**
 
