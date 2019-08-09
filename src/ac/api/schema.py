@@ -21,6 +21,8 @@ Deze API vereist autorisatie. Je kan de
 [token-tool](https://ref.tst.vng.cloud/tokens/) gebruiken om JWT-tokens te
 genereren.
 
+### Notificaties
+
 {notification_documentation(KANAAL_AUTORISATIES)}
 
 **Handige links**
