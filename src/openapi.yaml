@@ -1146,9 +1146,9 @@ components:
       required: true
   securitySchemes:
     JWT-Claims:
-      bearerFormat: JWT
-      scheme: bearer
       type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     AutorisatieBase:
       required:
