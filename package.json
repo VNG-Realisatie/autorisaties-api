@@ -32,6 +32,6 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-sass": "^4.0.2",
-    "swagger2openapi": "^2.11.16"
+    "swagger2openapi": "^5.3.1"
   }
 }
