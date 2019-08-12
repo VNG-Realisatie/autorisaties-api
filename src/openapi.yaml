@@ -264,6 +264,8 @@ paths:
 
 
         Na het aanmaken wordt een notificatie verstuurd.'
+      requestBody:
+        $ref: '#/components/requestBodies/Applicatie'
       responses:
         '201':
           description: Created
@@ -395,8 +397,6 @@ paths:
       security:
       - JWT-Claims:
         - autorisaties.bijwerken
-      requestBody:
-        $ref: '#/components/requestBodies/Applicatie'
     parameters: []
   /applicaties/consumer:
     get:
@@ -701,6 +701,8 @@ paths:
 
 
         Na het bijwerken wordt een notificatie verstuurd.'
+      requestBody:
+        $ref: '#/components/requestBodies/Applicatie'
       responses:
         '200':
           description: OK
@@ -839,8 +841,6 @@ paths:
       security:
       - JWT-Claims:
         - autorisaties.bijwerken
-      requestBody:
-        $ref: '#/components/requestBodies/Applicatie'
     patch:
       operationId: applicatie_partial_update
       summary: Werk (een deel van) de applicatie bij.
@@ -860,6 +860,8 @@ paths:
 
 
         Na het bijwerken wordt een notificatie verstuurd.'
+      requestBody:
+        $ref: '#/components/requestBodies/Applicatie'
       responses:
         '200':
           description: OK
@@ -998,8 +1000,6 @@ paths:
       security:
       - JWT-Claims:
         - autorisaties.bijwerken
-      requestBody:
-        $ref: '#/components/requestBodies/Applicatie'
     delete:
       operationId: applicatie_delete
       summary: Verwijder een applicatie met de bijhorende autorisaties.
