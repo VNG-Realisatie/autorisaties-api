@@ -25,7 +25,9 @@
     "gulp-hub": "^4.2.0",
     "gulp-if": "^3.0.0",
     "gulp-postcss": "^8.0.0",
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-sourcemaps": "^2.6.5",
+    "postcss-selector-lint": "^1.0.0",
+    "yargs": "^13.3.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
