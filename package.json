@@ -16,7 +16,7 @@
   },
   "author": "VNG-Realisatie",
   "license": "EUPL-1.2",
-  "homepage": "https://ref.tst.vng.cloud",
+  "homepage": "https://autorisaties-api.vng.cloud",
   "dependencies": {
     "autoprefixer": "^9.6.1",
     "cssnano": "^4.1.10",
