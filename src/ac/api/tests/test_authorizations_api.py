@@ -369,3 +369,95 @@ class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
 
         error = get_validation_errors(response, 'nonFieldErrors')
         self.assertEqual(error['code'], 'ambiguous-authorizations-specified')
+
+
+class AuthorizationValidationTests(JWTAuthMixin, APITestCase):
+
+    heeft_alle_autorisaties = True
+    applicatie_create_url = get_operation_url('applicatie_create')
+
+    def test_autorisatie_component_zrc_required_fields(self):
+        response = self.client.post(self.applicatie_create_url, {
+            'clientIds': ['test1'],
+            'label': 'Test applicatie',
+            'autorisaties': [
+                {
+                    'component': 'zrc',
+                    'scopes': ['zaken.lezen'],
+                    'zaaktype': '',
+                    'maxVertrouwelijkheidaanduiding': ''
+                }
+            ]
+        })
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        for attr in ['maxVertrouwelijkheidaanduiding', 'zaaktype']:
+            with self.subTest(attr=attr):
+                error = get_validation_errors(response, f'autorisaties.0.{attr}')
+                self.assertEqual(error['code'], 'required')
+
+    def test_autorisatie_component_drc_required_fields(self):
+        response = self.client.post(self.applicatie_create_url, {
+            'clientIds': ['test1'],
+            'label': 'Test applicatie',
+            'autorisaties': [
+                {
+                    'component': 'drc',
+                    'scopes': ['documenten.lezen'],
+                    'informatieobjecttype': '',
+                    'maxVertrouwelijkheidaanduiding': ''
+                }
+            ]
+        })
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        for attr in ['maxVertrouwelijkheidaanduiding', 'informatieobjecttype']:
+            with self.subTest(attr=attr):
+                error = get_validation_errors(response, f'autorisaties.0.{attr}')
+                self.assertEqual(error['code'], 'required')
+
+    def test_autorisatie_component_brc_required_fields(self):
+        response = self.client.post(self.applicatie_create_url, {
+            'clientIds': ['test1'],
+            'label': 'Test applicatie',
+            'autorisaties': [
+                {
+                    'component': 'brc',
+                    'scopes': ['besluiten.lezen'],
+                    'besluittype': '',
+                }
+            ]
+        })
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        error = get_validation_errors(response, f'autorisaties.0.besluittype')
+        self.assertEqual(error['code'], 'required')
+
+    def test_multiple_autorisatie_required_fields(self):
+        response = self.client.post(self.applicatie_create_url, {
+            'clientIds': ['test1'],
+            'label': 'Test applicatie',
+            'autorisaties': [
+                {
+                    'component': 'brc',
+                    'scopes': ['besluiten.lezen'],
+                    'besluittype': '',
+                },
+                {
+                    'component': 'zrc',
+                    'scopes': ['besluiten.lezen'],
+                    'zaaktype': 'https://example.com',
+                    'maxVertrouwelijkheidaanduiding': ''
+                }
+            ]
+        })
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        for i, attr in enumerate(['besluittype', 'maxVertrouwelijkheidaanduiding']):
+            with self.subTest(i=i):
+                error = get_validation_errors(response, f'autorisaties.{i}.{attr}')
+                self.assertEqual(error['code'], 'required')
