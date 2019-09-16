@@ -15,4 +15,4 @@ django-cors-middleware
 django-markup
 
 djangorestframework
-vng-api-common<1.1.0
+vng-api-common>=1.0.18,<1.1.0
