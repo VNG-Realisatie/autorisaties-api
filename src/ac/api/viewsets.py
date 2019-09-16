@@ -89,19 +89,20 @@ class ApplicatieViewSet(NotificationViewSetMixin, viewsets.ModelViewSet):
 
     Na het verwijderen wordt een notificatie verstuurd.
     """
-    queryset = Applicatie.objects.prefetch_related('autorisaties').order_by('-pk')
+
+    queryset = Applicatie.objects.prefetch_related("autorisaties").order_by("-pk")
     serializer_class = ApplicatieSerializer
     _filterset_class = ApplicatieFilter
-    lookup_field = 'uuid'
+    lookup_field = "uuid"
     permission_classes = (AuthScopesRequired,)
     required_scopes = {
-        'list': SCOPE_AUTORISATIES_LEZEN,
-        'retrieve': SCOPE_AUTORISATIES_LEZEN,
-        'consumer': SCOPE_AUTORISATIES_LEZEN,
-        'create': SCOPE_AUTORISATIES_BIJWERKEN,
-        'destroy': SCOPE_AUTORISATIES_BIJWERKEN,
-        'update': SCOPE_AUTORISATIES_BIJWERKEN,
-        'partial_update': SCOPE_AUTORISATIES_BIJWERKEN,
+        "list": SCOPE_AUTORISATIES_LEZEN,
+        "retrieve": SCOPE_AUTORISATIES_LEZEN,
+        "consumer": SCOPE_AUTORISATIES_LEZEN,
+        "create": SCOPE_AUTORISATIES_BIJWERKEN,
+        "destroy": SCOPE_AUTORISATIES_BIJWERKEN,
+        "update": SCOPE_AUTORISATIES_BIJWERKEN,
+        "partial_update": SCOPE_AUTORISATIES_BIJWERKEN,
     }
     notifications_kanaal = KANAAL_AUTORISATIES
 
