@@ -2,15 +2,16 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from vng_api_common.authorizations.models import Applicatie, Autorisatie
 from vng_api_common.authorizations.validators import UniqueClientIDValidator
-from vng_api_common.constants import ComponentTypes, VertrouwelijkheidsAanduiding
+from vng_api_common.constants import (
+    ComponentTypes, VertrouwelijkheidsAanduiding
+)
 from vng_api_common.tests import (
-    JWTAuthMixin,
-    get_operation_url,
-    get_validation_errors,
-    reverse,
+    JWTAuthMixin, get_operation_url, get_validation_errors, reverse
 )
 
-from ac.api.scopes import SCOPE_AUTORISATIES_BIJWERKEN, SCOPE_AUTORISATIES_LEZEN
+from ac.api.scopes import (
+    SCOPE_AUTORISATIES_BIJWERKEN, SCOPE_AUTORISATIES_LEZEN
+)
 from ac.datamodel.tests.factories import ApplicatieFactory, AutorisatieFactory
 
 
@@ -287,7 +288,7 @@ class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
     def test_filter_client_id_hit(self):
         url = get_operation_url("applicatie_list")
 
-        response = self.client.get(url, {"client_ids": "id2"})
+        response = self.client.get(url, {"clientIds": "id2"})
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["count"], 1)
@@ -295,7 +296,7 @@ class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
     def test_filter_client_id_miss(self):
         url = get_operation_url("applicatie_list")
 
-        response = self.client.get(url, {"client_ids": "id3"})
+        response = self.client.get(url, {"clientIds": "id3"})
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["count"], 0)
@@ -311,6 +312,18 @@ class ReadAuthorizationsTests(JWTAuthMixin, APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["url"], f"http://testserver{reverse(app)}")
+
+    def test_validate_incorrect_query_params(self):
+        ApplicatieFactory.create_batch(2)
+
+        url = get_operation_url('applicatie_list')
+
+        response = self.client.get(url, {'someparam': 'somevalue'})
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        error = get_validation_errors(response, 'nonFieldErrors')
+        self.assertEqual(error['code'], 'unknown-parameters')
 
 
 class UpdateAuthorizationsTests(JWTAuthMixin, APITestCase):
