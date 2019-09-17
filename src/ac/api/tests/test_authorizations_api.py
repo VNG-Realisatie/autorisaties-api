@@ -485,7 +485,7 @@ class AuthorizationValidationTests(JWTAuthMixin, APITestCase):
                     },
                     {
                         "component": "zrc",
-                        "scopes": ["besluiten.lezen"],
+                        "scopes": ["zaken.lezen"],
                         "zaaktype": "https://example.com",
                         "maxVertrouwelijkheidaanduiding": "",
                     },
