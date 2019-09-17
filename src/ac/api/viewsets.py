@@ -19,9 +19,9 @@ from .scopes import SCOPE_AUTORISATIES_BIJWERKEN, SCOPE_AUTORISATIES_LEZEN
 logger = logging.getLogger(__name__)
 
 
-class ApplicatieViewSet(CheckQueryParamsMixin,
-                        NotificationViewSetMixin,
-                        viewsets.ModelViewSet):
+class ApplicatieViewSet(
+    CheckQueryParamsMixin, NotificationViewSetMixin, viewsets.ModelViewSet
+):
     """
     Uitlezen en configureren van autorisaties voor applicaties.
 
