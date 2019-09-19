@@ -1,8 +1,11 @@
 from django.conf import settings
 
 from drf_yasg import openapi
+from vng_api_common.notifications.utils import notification_documentation
 
-description = f"""Een API om een autorisatiecomponent te benaderen.
+from .kanalen import KANAAL_AUTORISATIES
+
+description = f"""Een API om een autorisatiecomponent (AC) te benaderen.
 
 De `AUTORISATIE` is het kernobject in deze API. Autorisaties worden toegekend
 aan applicaties. Een applicatie is een representatie van een (web) app die
@@ -12,32 +15,37 @@ BRC.
 Deze API laat toe om autorisaties van een (taak)applicatie te beheren en uit
 te lezen.
 
+**Afhankelijkheden**
+
+Deze API is afhankelijk van:
+
+* Notificaties API
+
 **Autorisatie**
 
 Deze API vereist autorisatie. Je kan de
-[token-tool](https://ref.tst.vng.cloud/tokens/) gebruiken om JWT-tokens te
+[token-tool](https://zaken-auth.vng.cloud/) gebruiken om JWT-tokens te
 genereren.
 
-**Notificaties**
+### Notificaties
 
-Deze component publiceert notificaties op het kanaal `TODO`.
+{notification_documentation(KANAAL_AUTORISATIES)}
 
 **Handige links**
 
-* [Aan de slag](https://ref.tst.vng.cloud/ontwikkelaars/)
-* ["Papieren" standaard](https://ref.tst.vng.cloud/standaard/)
+* [Documentatie](https://zaakgerichtwerken.vng.cloud/standaard)
+* [Zaakgericht werken](https://zaakgerichtwerken.vng.cloud)
 """
 
 info = openapi.Info(
-    title="Autorisatiecomponent (AC) API",
+    title=f"{settings.PROJECT_NAME} API",
     default_version=settings.API_VERSION,
     description=description,
     contact=openapi.Contact(
-        email="support@maykinmedia.nl",
-        url="https://github.com/VNG-Realisatie/gemma-zaken"
+        email="standaarden.ondersteuning@vng.nl",
+        url="https://zaakgerichtwerken.vng.cloud",
     ),
     license=openapi.License(
-        name="EUPL 1.2",
-        url='https://opensource.org/licenses/EUPL-1.2'
+        name="EUPL 1.2", url="https://opensource.org/licenses/EUPL-1.2"
     ),
 )

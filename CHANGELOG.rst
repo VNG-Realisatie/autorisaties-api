@@ -2,6 +2,19 @@
 Wijzigingen
 ===========
 
+1.0.0-rc1 (2019-09-19)
+======================
+
+Second release candidate
+
+* Added documentation about notifications to the API spec. This documents the
+  notifications that must be sent by provider implementations.
+* Update to latest stable/security releases of dependencies
+* Added Black for code formatting
+* Added tox to run tests/linters
+* Include version information in Docker image
+* Added validation of filter parameters to endpoints that support those
+
 1.0.0-rc1 (2019-07-18)
 ======================
 

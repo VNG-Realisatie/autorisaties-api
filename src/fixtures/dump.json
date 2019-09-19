@@ -1,0 +1,96 @@
+[
+    {
+        "model": "vng_api_common.jwtsecret",
+        "pk": 1,
+        "fields": {
+            "identifier": "zgw_api_tests_limited-d0sVJ8FQa9W7",
+            "secret": "TIwnmLEywLhYTn5jJRymdh6AH2skrCry"
+        }
+    },
+    {
+        "model": "vng_api_common.jwtsecret",
+        "pk": 2,
+        "fields": {
+            "identifier": "zgw_api_tests-Gvvw2jXBk3i3",
+            "secret": "VJnbziYxgRowf5KWPjXfP02g6aWPy6Kd"
+        }
+    },
+    {
+        "model": "vng_api_common.apicredential",
+        "pk": 1,
+        "fields": {
+            "api_root": "http://localhost:8000/api/v1/",
+            "label": "",
+            "client_id": "zgw_api_tests-Gvvw2jXBk3i3",
+            "secret": "VJnbziYxgRowf5KWPjXfP02g6aWPy6Kd",
+            "user_id": "",
+            "user_representation": ""
+        }
+    },
+    {
+        "model": "vng_api_common.apicredential",
+        "pk": 3,
+        "fields": {
+            "api_root": "http://localhost:8001/api/v1/",
+            "label": "",
+            "client_id": "zgw_api_tests-Gvvw2jXBk3i3",
+            "secret": "zgw_api_tests-VJnbziYxgRowf5KWPjXfP02g6aWPy6Kd",
+            "user_id": "",
+            "user_representation": ""
+        }
+    },
+    {
+        "model": "vng_api_common.apicredential",
+        "pk": 4,
+        "fields": {
+            "api_root": "http://localhost:8002/api/v1/",
+            "label": "",
+            "client_id": "zgw_api_tests-Gvvw2jXBk3i3",
+            "secret": "zgw_api_tests-VJnbziYxgRowf5KWPjXfP02g6aWPy6Kd",
+            "user_id": "",
+            "user_representation": ""
+        }
+    },
+    {
+        "model": "vng_api_common.apicredential",
+        "pk": 5,
+        "fields": {
+            "api_root": "http://localhost:8003/api/v1/",
+            "label": "",
+            "client_id": "zgw_api_tests-Gvvw2jXBk3i3",
+            "secret": "zgw_api_tests-VJnbziYxgRowf5KWPjXfP02g6aWPy6Kd",
+            "user_id": "",
+            "user_representation": ""
+        }
+    },
+    {
+        "model": "vng_api_common.apicredential",
+        "pk": 6,
+        "fields": {
+            "api_root": "http://localhost:8004/api/v1/",
+            "label": "",
+            "client_id": "zgw_api_tests-Gvvw2jXBk3i3",
+            "secret": "zgw_api_tests-VJnbziYxgRowf5KWPjXfP02g6aWPy6Kd",
+            "user_id": "",
+            "user_representation": ""
+        }
+    },
+    {
+        "model": "authorizations.authorizationsconfig",
+        "pk": 1,
+        "fields": {
+            "api_root": "http://localhost:8005/api/v1",
+            "component": "ac"
+        }
+    },
+    {
+        "model": "authorizations.applicatie",
+        "pk": 1,
+        "fields": {
+            "uuid": "2c22da2a-a6e6-4594-bcb7-f84e3f55e614",
+            "client_ids": "[\"zgw_api_tests-Gvvw2jXBk3i3\"]",
+            "label": "ZGW api tests",
+            "heeft_alle_autorisaties": true
+        }
+    }
+]

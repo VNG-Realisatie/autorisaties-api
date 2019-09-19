@@ -1,31 +1,31 @@
-dist: xenial
-
 language: python
-
-python: 3.7
+cache: pip
 
 services:
   - postgresql
 
-addons:
-  postgresql: "10"
+python:
+  - "3.7"
 
 env:
   global:
-  - DJANGO_SETTINGS_MODULE=ac.conf.jenkins
-  - SECRET_KEY=dummy
-  - DB_PASSWORD=
-  - DB_USER=postgres
+    - PGUSER=postgres
+    - PGDATABASE=postgres
+    - PGPASSWORD=
+
+  matrix:
+    - TOXENV=django_tests
+    - TOXENV=black
 
 install:
-  - pip install -r requirements/jenkins.txt
-  - pip install codecov
-  - npm ci
-  - npm run build
+  - pip install tox-travis
 
 script:
-  - python src/manage.py collectstatic --noinput --link
-  - coverage run src/manage.py test src
+  - tox
 
 after_success:
-  - codecov
+  - pip install codecov
+  - codecov -e TOXENV
+
+notifications:
+  email: false

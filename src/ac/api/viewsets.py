@@ -8,6 +8,7 @@ from vng_api_common.authorizations.models import Applicatie
 from vng_api_common.authorizations.serializers import ApplicatieSerializer
 from vng_api_common.notifications.viewsets import NotificationViewSetMixin
 from vng_api_common.permissions import AuthScopesRequired
+from vng_api_common.viewsets import CheckQueryParamsMixin
 
 from ac.api._schema_overrides import ApplicatieConsumerAutoSchema
 
@@ -18,7 +19,9 @@ from .scopes import SCOPE_AUTORISATIES_BIJWERKEN, SCOPE_AUTORISATIES_LEZEN
 logger = logging.getLogger(__name__)
 
 
-class ApplicatieViewSet(NotificationViewSetMixin, viewsets.ModelViewSet):
+class ApplicatieViewSet(
+    CheckQueryParamsMixin, NotificationViewSetMixin, viewsets.ModelViewSet
+):
     """
     Uitlezen en configureren van autorisaties voor applicaties.
 
@@ -89,19 +92,20 @@ class ApplicatieViewSet(NotificationViewSetMixin, viewsets.ModelViewSet):
 
     Na het verwijderen wordt een notificatie verstuurd.
     """
-    queryset = Applicatie.objects.prefetch_related('autorisaties').order_by('-pk')
+
+    queryset = Applicatie.objects.prefetch_related("autorisaties").order_by("-pk")
     serializer_class = ApplicatieSerializer
     _filterset_class = ApplicatieFilter
-    lookup_field = 'uuid'
+    lookup_field = "uuid"
     permission_classes = (AuthScopesRequired,)
     required_scopes = {
-        'list': SCOPE_AUTORISATIES_LEZEN,
-        'retrieve': SCOPE_AUTORISATIES_LEZEN,
-        'consumer': SCOPE_AUTORISATIES_LEZEN,
-        'create': SCOPE_AUTORISATIES_BIJWERKEN,
-        'destroy': SCOPE_AUTORISATIES_BIJWERKEN,
-        'update': SCOPE_AUTORISATIES_BIJWERKEN,
-        'partial_update': SCOPE_AUTORISATIES_BIJWERKEN,
+        "list": SCOPE_AUTORISATIES_LEZEN,
+        "retrieve": SCOPE_AUTORISATIES_LEZEN,
+        "consumer": SCOPE_AUTORISATIES_LEZEN,
+        "create": SCOPE_AUTORISATIES_BIJWERKEN,
+        "destroy": SCOPE_AUTORISATIES_BIJWERKEN,
+        "update": SCOPE_AUTORISATIES_BIJWERKEN,
+        "partial_update": SCOPE_AUTORISATIES_BIJWERKEN,
     }
     notifications_kanaal = KANAAL_AUTORISATIES
 

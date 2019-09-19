@@ -58,6 +58,9 @@ COPY ./bin/runtests.sh /runtests.sh
 COPY --from=frontend-build /app/src/ac/static/fonts /app/src/ac/static/fonts
 COPY --from=frontend-build /app/src/ac/static/css /app/src/ac/static/css
 COPY ./src /app/src
+ARG COMMIT_HASH
+ENV GIT_SHA=${COMMIT_HASH}
+
 RUN mkdir /app/log
 CMD ["/runtests.sh"]
 
@@ -92,6 +95,8 @@ RUN mkdir /app/log
 COPY --from=frontend-build /app/src/ac/static/fonts /app/src/ac/static/fonts
 COPY --from=frontend-build /app/src/ac/static/css /app/src/ac/static/css
 COPY ./src /app/src
+ARG COMMIT_HASH
+ENV GIT_SHA=${COMMIT_HASH}
 
 ENV DJANGO_SETTINGS_MODULE=ac.conf.docker
 
