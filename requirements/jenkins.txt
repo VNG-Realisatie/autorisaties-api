@@ -68,6 +68,6 @@ unidecode==1.0.23
 uritemplate==3.0.0
 urllib3==1.24.3
 uwsgi==2.0.18
-vng-api-common==1.0.18
+vng-api-common==1.0.22
 webencodings==0.5.1
 wrapt==1.11.1
