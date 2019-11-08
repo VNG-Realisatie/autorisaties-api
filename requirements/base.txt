@@ -34,7 +34,7 @@ jinja2==2.10.1            # via coreschema
 markdown==3.1
 markupsafe==1.1.1         # via jinja2
 oyaml==0.9                # via vng-api-common
-pip-tools==4.0.0
+pip-tools==4.2.0
 psycopg2==2.8
 pyjwt==1.7.1              # via gemma-zds-client, vng-api-common
 python-dotenv==0.10.1
@@ -49,8 +49,8 @@ unidecode==1.0.23         # via vng-api-common
 uritemplate==3.0.0        # via coreapi, drf-yasg
 urllib3==1.24.3           # via requests
 uwsgi==2.0.18
-vng-api-common==1.0.20
+vng-api-common==1.0.31
 webencodings==0.5.1       # via bleach
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.2.0        # via markdown
+# setuptools==41.6.0        # via markdown
