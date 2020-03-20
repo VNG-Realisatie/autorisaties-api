@@ -43,9 +43,9 @@ Referenties
 * `Code <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent>`_
 
 
-.. |build-status| image:: http://jenkins.nlx.io/buildStatus/icon?job=gemma-autorisatiecomponent-stable
+.. |build-status| image:: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent.svg?branch=develop
     :alt: Build status
-    :target: http://jenkins.nlx.io/job/gemma-autorisatiecomponent-stable
+    :target: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent.svg?branch=develop
 
 .. |requirements| image:: https://requires.io/github/VNG-Realisatie/gemma-autorisatiecomponent/requirements.svg?branch=master
      :target: https://requires.io/github/VNG-Realisatie/gemma-autorisatiecomponent/requirements/?branch=master
