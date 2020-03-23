@@ -45,7 +45,7 @@ Referenties
 
 .. |build-status| image:: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent.svg?branch=develop
     :alt: Build status
-    :target: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent.svg?branch=develop
+    :target: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent
 
 .. |requirements| image:: https://requires.io/github/VNG-Realisatie/gemma-autorisatiecomponent/requirements.svg?branch=master
      :target: https://requires.io/github/VNG-Realisatie/gemma-autorisatiecomponent/requirements/?branch=master
