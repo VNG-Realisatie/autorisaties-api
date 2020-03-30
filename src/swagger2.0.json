@@ -2,9 +2,9 @@
     "swagger": "2.0",
     "info": {
         "title": "Autorisaties API",
-        "description": "Een API om een autorisatiecomponent (AC) te benaderen.\n\nDe `AUTORISATIE` is het kernobject in deze API. Autorisaties worden toegekend\naan applicaties. Een applicatie is een representatie van een (web) app die\ncommuniceert met de API van (andere) componenten, zoals het ZRC, DRC, ZTC en\nBRC.\n\nDeze API laat toe om autorisaties van een (taak)applicatie te beheren en uit\nte lezen.\n\n**Afhankelijkheden**\n\nDeze API is afhankelijk van:\n\n* Notificaties API\n\n**Autorisatie**\n\nDeze API vereist autorisatie. Je kan de\n[token-tool](https://zaken-auth.vng.cloud/) gebruiken om JWT-tokens te\ngenereren.\n\n### Notificaties\n\nDeze API publiceert notificaties op het kanaal `autorisaties`.\n\n**Main resource**\n\n`applicatie`\n\n\n\n**Kenmerken**\n\n\n\n**Resources en acties**\n- `applicatie`: create, update, destroy\n\n\n**Handige links**\n\n* [Documentatie](https://zaakgerichtwerken.vng.cloud/standaard)\n* [Zaakgericht werken](https://zaakgerichtwerken.vng.cloud)\n",
+        "description": "Een API om een autorisatiecomponent (AC) te benaderen.\n\nDe `AUTORISATIE` is het kernobject in deze API. Autorisaties worden toegekend\naan applicaties. Een applicatie is een representatie van een (web) app die\ncommuniceert met de API van (andere) componenten, zoals het ZRC, DRC, ZTC en\nBRC.\n\nDeze API laat toe om autorisaties van een (taak)applicatie te beheren en uit\nte lezen.\n\n**Afhankelijkheden**\n\nDeze API is afhankelijk van:\n\n* Notificaties API\n\n**Autorisatie**\n\nDeze API vereist autorisatie. Je kan de\n[token-tool](https://zaken-auth.vng.cloud/) gebruiken om JWT-tokens te\ngenereren.\n\n### Notificaties\n\nDeze API publiceert notificaties op het kanaal `autorisaties`.\n\n**Main resource**\n\n`applicatie`\n\n\n\n**Kenmerken**\n\n\n\n**Resources en acties**\n- `applicatie`: create, update, destroy\n\n\n**Handige links**\n\n* [Documentatie](https://vng-realisatie.github.io/gemma-zaken/standaard)\n* [Zaakgericht werken](https://vng-realisatie.github.io/gemma-zaken)\n",
         "contact": {
-            "url": "https://zaakgerichtwerken.vng.cloud",
+            "url": "https://vng-realisatie.github.io/gemma-zaken",
             "email": "standaarden.ondersteuning@vng.nl"
         },
         "license": {
@@ -22,9 +22,9 @@
     ],
     "securityDefinitions": {
         "JWT-Claims": {
-            "type": "http",
+            "bearerFormat": "JWT",
             "scheme": "bearer",
-            "bearerFormat": "JWT"
+            "type": "http"
         }
     },
     "security": [
