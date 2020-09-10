@@ -43,7 +43,7 @@ Referenties
 * `Code <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent>`_
 
 
-.. |build-status| image:: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent.svg?branch=develop
+.. |build-status| image:: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent.svg?branch=master
     :alt: Build status
     :target: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent
 
@@ -54,7 +54,7 @@ Referenties
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 
-.. _testomgeving: https://ref.tst.vng.cloud/ac/
+.. _testomgeving: https://autorisaties-api.vng.cloud/
 
 Licentie
 ========
