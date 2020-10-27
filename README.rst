@@ -41,7 +41,7 @@ Ondersteuning
 ==========  ==============  ==========================  =================
 Versie      Release datum   Einddatum ondersteuning     Documentatie
 ==========  ==============  ==========================  =================
-1.x         2019-11-18      (nog niet bekend)           `Documentatie <https://vng-realisatie.github.io/gemma-zaken/standaard/documenten/index>`_
+1.x         2019-11-18      (nog niet bekend)           `Documentatie <https://vng-realisatie.github.io/gemma-zaken/standaard/autorisaties/index>`_
 ==========  ==============  ==========================  =================
 
 Referentie implementatie
