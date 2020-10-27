@@ -324,3 +324,6 @@ if SENTRY_DSN:
 IS_HTTPS = os.getenv("IS_HTTPS", "1").lower() in ["true", "1", "yes"]
 
 NOTIFICATIONS_KANAAL = "autorisaties"
+
+# URL for documentation that's shown in API schema
+DOCUMENTATION_URL = "https://vng-realisatie.github.io/gemma-zaken"
