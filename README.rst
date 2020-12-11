@@ -23,15 +23,15 @@ API specificaties
 
 |lint-oas| |generate-sdks| |generate-postman-collection|
 
-==========  ==============  =============================
-Versie      Release datum   API specificatie
-==========  ==============  =============================
-master       n.v.t.         `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/gemma-autorisatiecomponent/master/src/openapi.yaml>`_,
+==========  ==============  ====================================================================================================================================================================================================  =======================================================================================================================  =================================================================================================================================
+Versie      Release datum   API specificatie                                                                                                                                                                                      Autorisaties                                                                                                             Notificaties
+==========  ==============  ====================================================================================================================================================================================================  =======================================================================================================================  =================================================================================================================================
+master       n.v.t.         `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/gemma-autorisatiecomponent/master/src/openapi.yaml>`_,                                                  `Scopes <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent/blob/master/src/autorisaties.md>`_                 `Berichtkenmerken <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent/blob/master/src/notificaties.md>`_
                             `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/gemma-autorisatiecomponent/master/src/openapi.yaml>`_
                             (`verschillen <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent/compare/1.0.0..master?diff=split#diff-b9c28fec6c3f3fa5cff870d24601d6ab7027520f3b084cc767aefd258cb8c40a>`_)
-1.0.0       2019-11-18      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/gemma-autorisatiecomponent/1.0.0/src/openapi.yaml>`_,
+1.0.0       2019-11-18      `ReDoc <https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/VNG-Realisatie/gemma-autorisatiecomponent/1.0.0/src/openapi.yaml>`_,                                                   `Scopes <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent/blob/1.0.0/src/autorisaties.md>`_                  `Berichtkenmerken <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent/blob/1.0.0/src/notificaties.md>`_
                             `Swagger <https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/gemma-autorisatiecomponent/1.0.0/src/openapi.yaml>`_
-==========  ==============  =============================
+==========  ==============  ====================================================================================================================================================================================================  =======================================================================================================================  =================================================================================================================================
 
 Zie ook: `Alle versies en wijzigingen <https://github.com/VNG-Realisatie/gemma-autorisatiecomponent/blob/master/CHANGELOG.rst>`_
 
