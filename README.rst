@@ -83,9 +83,9 @@ Licensed under the EUPL_
 
 .. _EUPL: LICENCE.md
 
-.. |build-status| image:: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent.svg?branch=master
+.. |build-status| image:: https://github.com/VNG-Realisatie/autorisaties-api/workflows/ci-build/badge.svg
     :alt: Build status
-    :target: https://travis-ci.org/VNG-Realisatie/gemma-autorisatiecomponent
+    :target: https://github.com/VNG-Realisatie/autorisaties-api/actions?query=workflow%3Aci-build
 
 .. |requirements| image:: https://requires.io/github/VNG-Realisatie/gemma-autorisatiecomponent/requirements.svg?branch=master
      :alt: Requirements status
