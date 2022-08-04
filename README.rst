@@ -2,7 +2,7 @@
 Autorisaties API
 ================
 
-:Version: 1.0.0
+:Version: 1.1.0-alpha1
 :Source: https://github.com/VNG-Realisatie/gemma-autorisatiecomponent
 :Keywords: autorisatie, autz, zaakgericht werken, GEMMA
 
