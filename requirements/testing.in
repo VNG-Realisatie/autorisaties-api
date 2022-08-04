@@ -3,6 +3,7 @@ coverage
 factory_boy
 freezegun
 isort
+black
 mock
 pep8
 pylint<2.0

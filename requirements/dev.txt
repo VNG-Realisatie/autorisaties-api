@@ -10,6 +10,8 @@ asgiref==3.5.2
     #   django
 astroid==1.6.6
     # via pylint
+black==22.6.0
+    # via -r requirements/testing.in
 bleach==5.0.1
     # via -r requirements/base.txt
 bleach-whitelist==0.0.11
@@ -19,8 +21,6 @@ build==0.8.0
     #   -r requirements/base.txt
     #   pip-tools
 bump2version==1.0.1
-    # via bumpversion
-bumpversion==0.6.0
     # via -r requirements/dev.in
 certifi==2022.6.15
     # via
@@ -33,6 +33,7 @@ charset-normalizer==2.1.0
 click==8.1.3
     # via
     #   -r requirements/base.txt
+    #   black
     #   pip-tools
 coreapi==2.3.3
     # via
@@ -165,6 +166,8 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/testing.in
+mypy-extensions==0.4.3
+    # via black
 oyaml==1.0
     # via
     #   -r requirements/base.txt
@@ -174,6 +177,8 @@ packaging==21.3
     #   -r requirements/base.txt
     #   build
     #   drf-yasg
+pathspec==0.9.0
+    # via black
 pep517==0.13.0
     # via
     #   -r requirements/base.txt
@@ -182,6 +187,8 @@ pep8==1.7.1
     # via -r requirements/testing.in
 pip-tools==6.8.0
     # via -r requirements/base.txt
+platformdirs==2.5.2
+    # via black
 psycopg2==2.9.3
     # via -r requirements/base.txt
 pyjwt==2.4.0
@@ -247,8 +254,11 @@ tblib==1.7.0
 tomli==2.0.1
     # via
     #   -r requirements/base.txt
+    #   black
     #   build
     #   pep517
+typing-extensions==4.3.0
+    # via black
 uritemplate==4.1.1
     # via
     #   -r requirements/base.txt
