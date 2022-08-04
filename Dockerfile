@@ -28,11 +28,10 @@ FROM mhart/alpine-node:16 AS frontend-build
 
 WORKDIR /app
 
-# TODO: update according to webpack configuration
 COPY ./*.json /app/
 RUN npm install
 
-COPY ./Gulpfile.js /app/
+COPY ./*.js ./.babelrc /app/
 COPY ./build /app/build/
 
 COPY src/ac/sass/ /app/src/ac/sass/
@@ -49,15 +48,14 @@ RUN apk --no-cache add \
 COPY --from=build /usr/local/lib/python3.9 /usr/local/lib/python3.9
 COPY --from=build /app/requirements /app/requirements
 
-RUN pip install -r requirements/jenkins.txt --exists-action=s
+RUN pip install -r requirements/ci.txt --exists-action=s
 
 # Stage 3.2 - Set up testing config
 COPY ./setup.cfg /app/setup.cfg
 COPY ./bin/runtests.sh /runtests.sh
 
 # Stage 3.3 - Copy source code
-COPY --from=frontend-build /app/src/ac/static/fonts /app/src/ac/static/fonts
-COPY --from=frontend-build /app/src/ac/static/css /app/src/ac/static/css
+COPY --from=frontend-build /app/src/ac/static/bundles /app/src/ac/static/bundles
 COPY ./src /app/src
 ARG COMMIT_HASH
 ENV GIT_SHA=${COMMIT_HASH}
@@ -85,16 +83,12 @@ RUN apk --no-cache add \
 COPY --from=build /usr/local/lib/python3.9 /usr/local/lib/python3.9
 COPY --from=build /usr/local/bin/uwsgi /usr/local/bin/uwsgi
 
-# required for fonts,styles etc.
-COPY --from=frontend-build /app/node_modules/font-awesome /app/node_modules/font-awesome
-
 # Stage 4.2 - Copy source code
 WORKDIR /app
 COPY ./bin/docker_start.sh /start.sh
 RUN mkdir /app/log
 
-COPY --from=frontend-build /app/src/ac/static/fonts /app/src/ac/static/fonts
-COPY --from=frontend-build /app/src/ac/static/css /app/src/ac/static/css
+COPY --from=frontend-build /app/src/ac/static/bundles /app/src/ac/static/bundles
 COPY ./src /app/src
 ARG COMMIT_HASH
 ENV GIT_SHA=${COMMIT_HASH}
