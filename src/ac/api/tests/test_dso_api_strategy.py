@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from django.test import override_settings
 from django.utils.translation import ugettext as _
 
