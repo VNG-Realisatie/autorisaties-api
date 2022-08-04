@@ -6,21 +6,27 @@ cd %toplevel%
 
 REM Base deps
 pip-compile^
-    --no-index^
+    --no-emit-index-url^
     requirements/base.in
+
+REM Production deps
+pip-compile^
+    --no-emit-index-url^
+    --output-file requirements/production.txt^
+    requirements/base.txt^
+    requirements/production.in^
 
 REM Dev deps
 pip-compile^
-    --no-index^
+    --no-emit-index-url^
     --output-file requirements/dev.txt^
     requirements/base.txt^
     requirements/testing.in^
-    requirements/dev.in
 
-REM Jenkins/tests deps
+REM Ci/tests deps
 pip-compile^
-    --no-index^
-    --output-file requirements/jenkins.txt^
+    --no-emit-index-url^
+    --output-file requirements/ci.txt^
     requirements/base.txt^
-    requirements/dev.txt^
+    requirements/testing.in^
     requirements/jenkins.in

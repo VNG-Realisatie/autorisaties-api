@@ -81,6 +81,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "vng_api_common.middleware.APIVersionHeaderMiddleware",
+    "axes.middleware.AxesMiddleware",
 ]
 
 ROOT_URLCONF = "ac.urls"
@@ -247,11 +248,14 @@ AUTH_USER_MODEL = "accounts.User"
 
 # Allow logging in with both username+password and email+password
 AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesBackend",
     "ac.accounts.backends.UserModelEmailBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
 SESSION_COOKIE_NAME = "ac_sessionid"
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 #
 # Custom settings
