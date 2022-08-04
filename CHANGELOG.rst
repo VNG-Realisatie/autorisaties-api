@@ -2,7 +2,7 @@
 Wijzigingen
 ===========
 
-1.1.0-alpha1
+1.1.0-rc1
 ========================
 
 * Update project requirements
