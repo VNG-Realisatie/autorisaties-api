@@ -1,5 +1,4 @@
-# Shared between dev and jenkins requirements to run our tests
-coverage
+# Shared between dev and ci requirements to run our tests
 factory_boy
 freezegun
 isort
