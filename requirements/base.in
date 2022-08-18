@@ -6,13 +6,13 @@ python-dotenv
 pytz
 raven
 markdown
-uwsgi
 
-Django<3.0
+Django~=3.2
 django-axes
 django-choices
 django-cors-middleware
 django-markup
+django-filter~=21.1
 
 djangorestframework
-vng-api-common>=1.0.18,<1.1.0
+vng-api-common

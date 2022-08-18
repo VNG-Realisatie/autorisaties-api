@@ -8,6 +8,10 @@ asgiref==3.5.2
     # via
     #   -r requirements/base.txt
     #   django
+astroid==1.6.6
+    # via pylint
+black==22.6.0
+    # via -r requirements/testing.in
 bleach==5.0.1
     # via -r requirements/base.txt
 bleach-whitelist==0.0.11
@@ -27,6 +31,7 @@ charset-normalizer==2.1.0
 click==8.1.3
     # via
     #   -r requirements/base.txt
+    #   black
     #   pip-tools
 coreapi==2.3.3
     # via
@@ -37,12 +42,16 @@ coreschema==0.0.4
     #   -r requirements/base.txt
     #   coreapi
     #   drf-yasg
+coverage==6.4.2
+    # via -r requirements/testing.in
 django==3.2.15
     # via
     #   -r requirements/base.txt
     #   django-axes
+    #   django-capture-on-commit-callbacks
     #   django-choices
     #   django-filter
+    #   django-jenkins
     #   django-markup
     #   django-rest-framework-condition
     #   django-solo
@@ -52,6 +61,8 @@ django==3.2.15
     #   vng-api-common
 django-axes==5.36.0
     # via -r requirements/base.txt
+django-capture-on-commit-callbacks==1.11.0
+    # via -r requirements/testing.in
 django-choices==1.7.2
     # via
     #   -r requirements/base.txt
@@ -66,6 +77,8 @@ django-ipware==4.0.2
     # via
     #   -r requirements/base.txt
     #   django-axes
+django-jenkins==0.110.0
+    # via -r requirements/ci.in
 django-markup==1.5
     # via -r requirements/base.txt
 django-rest-framework-condition==0.1.1
@@ -94,6 +107,12 @@ drf-yasg==1.21.3
     # via
     #   -r requirements/base.txt
     #   vng-api-common
+factory-boy==3.2.1
+    # via -r requirements/testing.in
+faker==13.15.1
+    # via factory-boy
+freezegun==1.2.1
+    # via -r requirements/testing.in
 gemma-zds-client==1.0.1
     # via
     #   -r requirements/base.txt
@@ -118,6 +137,10 @@ isodate==0.6.1
     # via
     #   -r requirements/base.txt
     #   vng-api-common
+isort==5.10.1
+    # via
+    #   -r requirements/testing.in
+    #   pylint
 itypes==1.2.0
     # via
     #   -r requirements/base.txt
@@ -126,12 +149,20 @@ jinja2==3.1.2
     # via
     #   -r requirements/base.txt
     #   coreschema
+lazy-object-proxy==1.7.1
+    # via astroid
 markdown==3.4.1
     # via -r requirements/base.txt
 markupsafe==2.1.1
     # via
     #   -r requirements/base.txt
     #   jinja2
+mccabe==0.7.0
+    # via pylint
+mock==4.0.3
+    # via -r requirements/testing.in
+mypy-extensions==0.4.3
+    # via black
 oyaml==1.0
     # via
     #   -r requirements/base.txt
@@ -141,12 +172,18 @@ packaging==21.3
     #   -r requirements/base.txt
     #   build
     #   drf-yasg
+pathspec==0.9.0
+    # via black
 pep517==0.13.0
     # via
     #   -r requirements/base.txt
     #   build
+pep8==1.7.1
+    # via -r requirements/testing.in
 pip-tools==6.8.0
     # via -r requirements/base.txt
+platformdirs==2.5.2
+    # via black
 psycopg2==2.9.3
     # via -r requirements/base.txt
 pyjwt==2.4.0
@@ -154,10 +191,16 @@ pyjwt==2.4.0
     #   -r requirements/base.txt
     #   gemma-zds-client
     #   vng-api-common
+pylint==1.9.4
+    # via -r requirements/testing.in
 pyparsing==3.0.9
     # via
     #   -r requirements/base.txt
     #   packaging
+python-dateutil==2.8.2
+    # via
+    #   faker
+    #   freezegun
 python-dotenv==0.20.0
     # via -r requirements/base.txt
 pytz==2022.1
@@ -190,18 +233,26 @@ ruamel-yaml-clib==0.2.6
 six==1.16.0
     # via
     #   -r requirements/base.txt
+    #   astroid
     #   bleach
     #   django-choices
     #   isodate
+    #   pylint
+    #   python-dateutil
 sqlparse==0.4.2
     # via
     #   -r requirements/base.txt
     #   django
+tblib==1.7.0
+    # via -r requirements/testing.in
 tomli==2.0.1
     # via
     #   -r requirements/base.txt
+    #   black
     #   build
     #   pep517
+typing-extensions==4.3.0
+    # via black
 uritemplate==4.1.1
     # via
     #   -r requirements/base.txt
@@ -211,8 +262,6 @@ urllib3==1.26.11
     # via
     #   -r requirements/base.txt
     #   requests
-uwsgi==2.0.20
-    # via -r requirements/production.in
 vng-api-common==1.8.0
     # via -r requirements/base.txt
 webencodings==0.5.1
@@ -223,6 +272,8 @@ wheel==0.37.1
     # via
     #   -r requirements/base.txt
     #   pip-tools
+wrapt==1.14.1
+    # via astroid
 zipp==3.8.1
     # via
     #   -r requirements/base.txt

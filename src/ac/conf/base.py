@@ -15,7 +15,7 @@ BASE_DIR = os.path.abspath(
 )
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -81,6 +81,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "vng_api_common.middleware.APIVersionHeaderMiddleware",
+    "axes.middleware.AxesMiddleware",
 ]
 
 ROOT_URLCONF = "ac.urls"
@@ -113,10 +114,10 @@ TEMPLATES = [
 WSGI_APPLICATION = "ac.wsgi.application"
 
 # Database: Defined in target specific settings files.
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Password validation
-# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -129,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
+# https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = "nl-nl"
 
@@ -147,17 +148,14 @@ USE_THOUSAND_SEPARATOR = True
 LOCALE_PATHS = (os.path.join(DJANGO_PROJECT_DIR, "conf", "locale"),)
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Additional locations of static files
-STATICFILES_DIRS = (
-    os.path.join(DJANGO_PROJECT_DIR, "static"),
-    os.path.join(BASE_DIR, "node_modules", "font-awesome"),
-)
+STATICFILES_DIRS = (os.path.join(DJANGO_PROJECT_DIR, "static"),)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -247,11 +245,14 @@ AUTH_USER_MODEL = "accounts.User"
 
 # Allow logging in with both username+password and email+password
 AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesBackend",
     "ac.accounts.backends.UserModelEmailBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
 SESSION_COOKIE_NAME = "ac_sessionid"
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 #
 # Custom settings

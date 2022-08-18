@@ -34,7 +34,7 @@ class DSOApiStrategyTests(APITestCase):
     @override_settings(ROOT_URLCONF="ac.api.tests.test_urls")
     def test_api_24_version_header(self):
         response = self.client.get("/test-view")
-        self.assertEqual(response["API-version"], "1.0.0")
+        self.assertEqual(response["API-version"], "1.1.0-alpha1")
 
 
 class DSOApi50Tests(APITestCase):
@@ -142,7 +142,7 @@ class DSOApi50Tests(APITestCase):
             views.ConflictView,
             {
                 "code": "conflict",
-                "title": "A conflict occurred",
+                "title": _("A conflict occurred"),
                 "status": 409,
                 "detail": "The resource was updated, please retrieve it again",
             },

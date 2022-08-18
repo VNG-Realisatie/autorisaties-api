@@ -1,6 +1,6 @@
 {
   "name": "ac",
-  "version": "1.0.0",
+  "version": "1.1.0-alpha1",
   "description": "ac referentie implementatie API",
   "main": "src/index.js",
   "directories": {
@@ -8,7 +8,9 @@
   },
   "scripts": {
     "convert": "swagger2openapi src/swagger2.0.json -o src/openapi.yaml",
-    "build": "gulp build"
+    "build": "npm run bundle",
+    "bundle": "webpack",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -18,20 +20,27 @@
   "license": "EUPL-1.2",
   "homepage": "https://autorisaties-api.vng.cloud",
   "dependencies": {
-    "autoprefixer": "^9.6.1",
-    "cssnano": "^4.1.10",
-    "font-awesome": "^4.7.0",
-    "gulp-file": "^0.4.0",
-    "gulp-hub": "^4.2.0",
-    "gulp-if": "^3.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "postcss-selector-lint": "^1.0.0",
-    "yargs": "^13.3.0"
+    "microscope-sass": "latest"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-sass": "^4.0.2",
-    "swagger2openapi": "^5.3.1"
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "autoprefixer": "latest",
+    "babel-loader": "latest",
+    "css-loader": "latest",
+    "cssnano": "latest",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "latest",
+    "postcss-loader": "latest",
+    "postcss-selector-lint": "latest",
+    "sass": "latest",
+    "sass-loader": "latest",
+    "swagger2openapi": "latest",
+    "url-loader": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "webpack-dev-server": "latest",
+    "webpack-stream": "latest",
+    "yargs": "16.2.0"
   }
 }
