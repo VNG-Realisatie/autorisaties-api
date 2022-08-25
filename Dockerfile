@@ -38,8 +38,8 @@ COPY src/ac/sass/ /app/src/ac/sass/
 RUN npm run build
 
 
-# Stage 3 - Prepare jenkins tests image
-FROM build AS jenkins
+# Stage 3 - Prepare ci tests image
+FROM build AS ci
 
 RUN apk --no-cache add \
     postgresql-client
@@ -52,7 +52,6 @@ RUN pip install -r requirements/ci.txt --exists-action=s
 
 # Stage 3.2 - Set up testing config
 COPY ./setup.cfg /app/setup.cfg
-COPY ./bin/runtests.sh /runtests.sh
 
 # Stage 3.3 - Copy source code
 COPY --from=frontend-build /app/src/ac/static/bundles /app/src/ac/static/bundles
@@ -61,7 +60,6 @@ ARG COMMIT_HASH
 ENV GIT_SHA=${COMMIT_HASH}
 
 RUN mkdir /app/log
-CMD ["/runtests.sh"]
 
 
 # Stage 4 - Build docker image suitable for execution and deployment

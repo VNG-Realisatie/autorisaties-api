@@ -44,8 +44,6 @@ coreschema==0.0.4
     #   -r requirements/base.txt
     #   coreapi
     #   drf-yasg
-coverage==6.4.2
-    # via -r requirements/testing.in
 django==3.2.15
     # via
     #   -r requirements/base.txt

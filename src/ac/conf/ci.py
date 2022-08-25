@@ -27,7 +27,7 @@ LOGGING["loggers"].update(
 #
 
 # Show active environment in admin.
-ENVIRONMENT = "jenkins"
+ENVIRONMENT = "ci"
 
 #
 # Django-axes
@@ -36,11 +36,3 @@ AXES_BEHIND_REVERSE_PROXY = (
     False  # Required to allow FakeRequest and the like to work correctly.
 )
 AXES_CACHE = "axes_cache"
-
-#
-# Jenkins settings
-#
-INSTALLED_APPS += ["ac.tests", "django_jenkins"]
-PROJECT_APPS = [app for app in INSTALLED_APPS if app.startswith("ac.")]
-
-JENKINS_TASKS = ("django_jenkins.tasks.run_pylint", "django_jenkins.tasks.run_pep8")

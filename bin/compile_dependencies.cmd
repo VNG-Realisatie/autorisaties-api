@@ -14,7 +14,7 @@ pip-compile^
     --no-emit-index-url^
     --output-file requirements/production.txt^
     requirements/base.txt^
-    requirements/production.in^
+    requirements/production.in
 
 REM Dev deps
 pip-compile^
@@ -22,6 +22,7 @@ pip-compile^
     --output-file requirements/dev.txt^
     requirements/base.txt^
     requirements/testing.in^
+    requirements/dev.in
 
 REM Ci/tests deps
 pip-compile^
@@ -29,4 +30,4 @@ pip-compile^
     --output-file requirements/ci.txt^
     requirements/base.txt^
     requirements/testing.in^
-    requirements/jenkins.in
+    requirements/ci.in
