@@ -227,7 +227,7 @@ LOGGING = {
     },
     "loggers": {
         "ac": {"handlers": ["project"], "level": "INFO", "propagate": True},
-        "django.request": {"handlers": ["django"], "level": "ERROR", "propagate": True},
+        "django.request": {"handlers": ["django"], "level": "DEBUG", "propagate": True},
         "django.template": {
             "handlers": ["console"],
             "level": "INFO",
